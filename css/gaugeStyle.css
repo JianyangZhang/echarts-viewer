@@ -1,0 +1,27 @@
+body {
+	font-family: Microsoft YaHei;
+	font-size: 1vw;
+	margin-top: 3vw;
+}
+
+#chart1 {
+	width: 600px;
+	height: 400px;
+	box-shadow: 0 0 5px #000;
+	background-color: white;
+	border-radius: 0.2vw;
+	padding-left: 15px;
+	padding-top: 15px;
+}
+
+.margin-left {
+	margin-left: 1vw;
+}
+
+.margin-right {
+	margin-right: 1vw;
+}
+
+.bold {
+	font-weight: bold;
+}

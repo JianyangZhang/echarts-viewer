@@ -1,0 +1,9 @@
+body {
+	font-family: Microsoft YaHei;
+	font-size: 1vw;
+	margin-top: 5vw;
+}
+
+#btnContainer a {
+	width: 100%;
+}
