@@ -1,10 +1,10 @@
-$('#toggle-title').checkboxpicker();
-$('#toggle-title').on('change', function () {
+$("#toggle-title").checkboxpicker();
+$("#toggle-title").on("change", function () {
 });
 
 var myChart = echarts.init(document.getElementById("chart1"));
 var gauge = {
-	title: {show: true, text: "CPU 利用率"},
+	title: {show: true, text: "CPU 利用率", textStyle: {color: "white"}, padding: [0, 0, 0, 250]},
 	series: [{
 		name: "a",
 		type: "gauge",
@@ -18,7 +18,7 @@ var gauge = {
 		splitLine: {show: false},
 		axisTick: {show: false},
 		axisLabel: {show: false},
-		axisLine: {lineStyle: {width: 50, opacity: 0.9, color: [[0.5, '#068930'], [1, '#cecedb']]}},
+		axisLine: {lineStyle: {width: 50, opacity: 0.9, color: [[0.5, "#32A82D"], [1, "#262626"]]}},
 		startAngle: 205,
 		endAngle: -25,
 		splitNumber: 1
@@ -34,7 +34,7 @@ var gauge = {
 		splitLine: {show: false},
 		axisTick: {show: false},
 		axisLabel: {show: false},
-		axisLine: {lineStyle: {width: 10, opacity: 0.9, color: [[0.6, '#068930'], [0.85, '#f79400'], [1, '#d80404']]}},
+		axisLine: {lineStyle: {width: 10, opacity: 0.9, color: [[0.6, "#32A82D"], [0.85, "#D77728"], [1, "#E03434"]]}},
 		startAngle: 205,
 		endAngle: -25,
 		splitNumber: 1
@@ -47,18 +47,18 @@ setInterval(function () {
 	gauge.series[0].data[0].value = randomValue;
 	gauge.series[0].axisLine.lineStyle.color[0][0] = randomValue / 100;
 	if (randomValue <= 60) {
-		gauge.series[0].axisLine.lineStyle.color[0][1] = "#068930";
+		gauge.series[0].axisLine.lineStyle.color[0][1] = "#32A82D";
 	}
 	if (randomValue > 60 && randomValue <= 85) {
-		gauge.series[0].axisLine.lineStyle.color[0][1] = "#f79400";
+		gauge.series[0].axisLine.lineStyle.color[0][1] = "#D77728";
 	}
 	if (randomValue > 85) {
-		gauge.series[0].axisLine.lineStyle.color[0][1] = "#d80404";	
+		gauge.series[0].axisLine.lineStyle.color[0][1] = "#E03434";	
 	}
 	myChart.setOption(gauge);
 }, 1500);
 
-$('#toggle-title').on('change', function() {
+$("#toggle-title").on("change", function() {
 	if (gauge.title.show == true) {
 		gauge.title.show = false;
 	} else {
