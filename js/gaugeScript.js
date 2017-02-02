@@ -4,7 +4,7 @@ $("#toggle-title").on("change", function () {
 
 var myChart = echarts.init(document.getElementById("chart1"));
 var gauge = {
-	title: {show: true, text: "CPU 利用率", textStyle: {color: "white"}, padding: [0, 0, 0, 250]},
+	title: {show: true, text: "CPU 利用率", textStyle: {color: "white"}, left: "center"},
 	series: [{
 		name: "a",
 		type: "gauge",
