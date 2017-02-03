@@ -1,25 +1,21 @@
 body {
 	font-family: Microsoft YaHei;
-	font-size: 1vw;
+	font-size: 0.9vw;
 	margin-top: 3vw;
+	background-color: #fef8e6;
 }
 
 #showcase {
-	box-shadow: 0 0 5px #000;
-	border-radius: 0.2vw;
-	background-color: #1F1D1D;
-	padding-top: 1vw;
-}
-
-#chart1 {
 	width: 600px;
 	height: 400px;
+	box-shadow: 0 0 5px #000;
+	border-radius: 0.2vw;
 	margin: 0 auto;
-	padding-top: 1vw;
+	padding-top: 2vw;
 }
 
-#details_title {
-	margin-top: 2vw;
+#details_textStyle {
+	margin-top: 1vw;
 }
 
 .margin-left {
@@ -36,4 +32,9 @@ body {
 
 .greenBlue {
 	color: #50BBDB;
+}
+
+.entry {
+	margin: 0.5vw 0 auto;
+	font-size: 1vw;
 }

@@ -1,12 +1,20 @@
-$("#toggle-title").checkboxpicker();
-$("#toggle-title").on("change", function () {
-});
-
-var myChart = echarts.init(document.getElementById("chart1"));
+var myChart = echarts.init(document.getElementById("showcase"));
 var gauge = {
 	title: {show: true, text: "CPU 利用率", textStyle: {color: "white"}, left: "center"},
+	backgroundColor: "#1F1D1D",
+	toolbox: {
+		right: "3%",
+		show: true,
+		itemSize: 20,
+		feature: {
+			restore: {},
+			saveAsImage: {},
+			dataView: {},
+			dataZoom: {}
+		}
+	},
 	series: [{
-		name: "a",
+		name: "CPU Usage",
 		type: "gauge",
 		min: 0,
 		max: 100,
@@ -23,7 +31,7 @@ var gauge = {
 		endAngle: -25,
 		splitNumber: 1
 	}, {
-		name: "b",
+		name: "Outer Indicator",
 		type: "gauge",
 		min: 0,
 		max: 100,						
@@ -58,11 +66,47 @@ setInterval(function () {
 	myChart.setOption(gauge);
 }, 1500);
 
+// 全局字体样式
+$("#toggle-textStyle").checkboxpicker();
+$("#toggle-textStyle").on("change", function() {
+});
+
+// 标题
+$("#toggle-title").checkboxpicker();
 $("#toggle-title").on("change", function() {
 	if (gauge.title.show == true) {
 		gauge.title.show = false;
 	} else {
 		gauge.title.show = true;
+	}
+	myChart.setOption(gauge);
+});
+
+// 工具栏
+$("#toggle-toolbox").checkboxpicker();
+$("#toggle-toolbox").on("change", function() {
+	if (gauge.toolbox.show == true) {
+		gauge.toolbox.show = false;
+	} else {
+		gauge.toolbox.show = true;
+	}
+	myChart.setOption(gauge);
+});
+
+// 仪表盘主体
+$("#toggle-series").checkboxpicker();
+$("#toggle-series").on("change", function() {
+});
+
+// 容器背景颜色
+$("#toggle-backgroundColor").checkboxpicker();
+$("#toggle-backgroundColor").on("change", function() {
+	if (gauge.backgroundColor == "#1F1D1D") {
+		gauge.backgroundColor = "transparent";
+		gauge.title.textStyle.color = "black";
+	} else {
+		gauge.backgroundColor = "#1F1D1D";
+		gauge.title.textStyle.color = "white";
 	}
 	myChart.setOption(gauge);
 });
