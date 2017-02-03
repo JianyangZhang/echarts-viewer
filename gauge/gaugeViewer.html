@@ -30,10 +30,10 @@
 			</div>	
 			<div class="row">
 				<p>textStyle.fontFamily | string | 字体</p>
+				<p>textStyle.fontSize | int | 字体大小</p>
 				<p>textStyle.color | string | 字体颜色</p>
 				<p>textStyle.fontStyle | "normal" "italic" "oblique" | 字体风格</p>
-				<p>textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 字体粗细</p>
-				<p>textStyle.fontSize | int | 字体大小</p>
+				<p>textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 字体粗细</p>				
 			</div>
 			<!-- 主标题 -->
 			<div class="row" id="details_title">
@@ -43,11 +43,11 @@
 				<p>title.show | boolean | 是否显示标题组件</p>
 				<p>title.text | string | 标题文本，支持\n换行</p>
 				<p>title.textStyle | object | 文本样式设置</p>
-					<p>&emsp;&emsp;textStyle.color | string | 主题文本颜色</p>
-					<p>&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 主题文本风格</p>
-					<p>&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 主题文本粗细</p>
 					<p>&emsp;&emsp;textStyle.fontFamily | string | 主题文本字体</p>
 					<p>&emsp;&emsp;textStyle.fontSize | int | 主题文本大小</p>
+					<p>&emsp;&emsp;textStyle.color | string | 主题文本颜色</p>
+					<p>&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 主题文本风格</p>
+					<p>&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 主题文本粗细</p>	
 				<p>title.subtext | string | 副标题文本，支持\n换行</p>
 				<p>title.padding | [int, int, int, int] | 标题内边距</p>
 				<p>title.left | int 或 "int%" 或 "left" "center" "right"| 标题距离容器左侧的距离</p>
@@ -100,6 +100,86 @@
 				<p>toolbox.z | int | z值，优先级低于zlevel值，在同一个Canvas层中再分层</p>	
 				<p>toolbox.width | int 或 "auto" | 工具栏的宽度，默认auto自适应</p>
 				<p>toolbox.height | int 或 "auto" | 工具栏的高度，默认auto自适应</p>
+			</div>
+			<!-- 仪表盘主体 -->
+			<div class="row" id="details_series">
+				<h3 class="greenBlue bold">json.series[index].type | "gauge" | series数组的每个type为gauge的元素都是一个仪表盘主体</h3>
+			</div>	
+			<div class="row">
+				<p>series[index].name | string | 仪表盘名称</p>
+				<p>series[index].radius | int 或 "int%" | 仪表盘半径</p>
+				<p>series[index].startAngle | int | 仪表盘起始角度，默认单位为 °</p>
+				<p>series[index].endAngle | int | 仪表盘结束角度，默认单位为 °</p>
+				<p>series[index].clockwise | boolean | 仪表盘刻度是否为顺时针增长</p>
+				<p>series[index].min | int | 最小刻度值</p>
+				<p>series[index].max | int | 最大刻度值</p>
+				<p>series[index].splitNumber | int | 默认为10，值越大刻度线分割得越细</p>
+				<p>series[index].axisLine | object | 轴线相关配置</p>
+					<p>&emsp;&emsp;axisLine.show | boolean | 是否显示轴线(测试无效)</p>
+					<p>&emsp;&emsp;axisLine.lineStyle | object | 轴线样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.color | array | 每段的结束位置和颜色可以通过一个数组来表示，例如: [[0.2, '#91c7ae'], [0.8, '#63869e'], [1, '#c23531']]</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.width | int | 轴线宽度</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.opacity | int | 透明度，范围是0到1，0代表完全透明，1代表完全不透明</p>
+				<p>series[index].splitLine | object | 分隔线相关配置（分隔线是把整体轴线等分为几大份）</p>	
+					<p>&emsp;&emsp;splitLine.show | boolean | 是否显示分隔线</p>
+					<p>&emsp;&emsp;splitLine.length | int 或 "int%" | 分隔线线长</p>
+					<p>&emsp;&emsp;splitLine.lineStyle | object | 分隔线样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.color | string | 分隔线颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.width | int | 分隔线宽度</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.type | "solid" "dashed" "dotted" | 分隔线类型</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.opacity | int | 透明度，范围是0到1，0代表完全透明，1代表完全不透明</p>
+				<p>series[index].axisTick | object | 刻度线相关配置</p>
+					<p>&emsp;&emsp;axisTick.show | boolean | 是否显示刻度线</p>
+					<p>&emsp;&emsp;axisTick.splitNumber | int | 默认是5，值越大刻度线分割得越细</p>
+					<p>&emsp;&emsp;axisTick.length | int 或 "int%" | 刻度线长</p>
+					<p>&emsp;&emsp;splitLine.lineStyle | object | 刻度线样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.color | string | 刻度线颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.width | int | 刻度线宽度</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.type | "solid" "dashed" "dotted" | 刻度线类型</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.opacity | int | 透明度，范围是0到1，0代表完全透明，1代表完全不透明</p>
+				<p>series[index].axisLabel | object | 刻度标签相关配置，刻度标签即刻度线旁边的数字</p>	
+					<p>&emsp;&emsp;axisLabel.show | boolean | 是否显示刻度标签</p>
+					<p>&emsp;&emsp;axisLabel.distance | int | 刻度标签与刻度线的距离</p>
+					<p>&emsp;&emsp;axisLabel.textStyle | object | 刻度标签文本样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontFamily | string | 刻度标签字体</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontSize | int | 刻度标签字体大小</p>	
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.color | string | 刻度标签文本颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 刻度标签字体风格</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 刻度标签字体粗细</p>						
+				<p>series[index].pointer | object | 仪表盘指针</p>
+					<p>&emsp;&emsp;pointer.show | boolean | 是否显示指针</p>
+					<p>&emsp;&emsp;pointer.length | int 或 "int%" | 指针长度</p>
+					<p>&emsp;&emsp;pointer.width | int | 指针宽度</p>
+				<p>series[index].title | object | 仪表盘内部标题</p>	
+					<p>&emsp;&emsp;title.show | boolean | 是否显示仪表盘内部标题</p>
+					<p>&emsp;&emsp;title.offsetCenter | array | 仪表盘内部标题相对于仪表盘中心的偏移位置，可以是int或"int%"，例如[0, '-40%']: 第一项是水平方向的偏移，第二项是垂直方向的偏移</p>
+					<p>&emsp;&emsp;title.textStyle | object | 仪表盘内部标题文本样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontFamily | string | 仪表盘内部标题字体</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontSize | int | 仪表盘内部标题字体大小</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.color | string | 仪表盘内部标题文本颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 仪表盘内部标题字体风格</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 仪表盘内部标题字体粗细</p>								
+				<p>series[index].details | object | 仪表盘内部数字，显示此时仪表盘的数值</p>
+					<p>&emsp;&emsp;details.show | boolean | 是否显示仪表盘内部数字</p>
+					<p>&emsp;&emsp;details.width | int | 仪表盘内部数字的容器宽度</p>	
+					<p>&emsp;&emsp;details.height | int | 仪表盘内部数字的容器高度</p>	
+					<p>&emsp;&emsp;details.backgroundColor | string | 仪表盘内部数字的容器背景颜色</p>	
+					<p>&emsp;&emsp;details.borderWidth | int | 仪表盘内部数字的容器边框宽度</p>	
+					<p>&emsp;&emsp;details.borderColor | string | 仪表盘内部数字的容器边框颜色</p>	
+					<p>&emsp;&emsp;details.offsetCenter | array | 仪表盘内部数字相对于仪表盘中心的偏移位置，可以是int或"int%"，例如[0, '-40%']: 第一项是水平方向的偏移，第二项是垂直方向的偏移</p>
+					<p>&emsp;&emsp;details.textStyle | object | 仪表盘内部数字文本样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontFamily | string | 仪表盘内部数字字体</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontSize | int | 仪表盘内部数字字体大小</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.color | string | 仪表盘内部数字文本颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 仪表盘内部数字字体风格</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 仪表盘内部数字字体粗细</p>							
+			</div>
+			<!-- 容器背景颜色 -->
+			<div class="row" id="details_backgroundColor">
+				<h3 class="greenBlue bold">json.backgroundColor | string | 容器背景颜色</h3>
+			</div>	
+			<div class="row">
+				<p>json.backgroundColor | string | 容器背景颜色，默认为"transparent"透明</p>
 			</div>
 		</div>
 		<script src="../lib/jquery/jquery.min.js" type="text/javascript"></script>
