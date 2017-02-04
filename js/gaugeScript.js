@@ -2,6 +2,9 @@ var myChart = echarts.init(document.getElementById("showcase"));
 var gauge = {
 	title: {show: true, text: "CPU 利用率", textStyle: {color: "white"}, left: "center"},
 	backgroundColor: "#1F1D1D",
+	tooltip : {
+		formatter: "{a} <br/>{b} : {c}%"
+    },
 	toolbox: {
 		right: "3%",
 		show: true,
@@ -9,8 +12,7 @@ var gauge = {
 		feature: {
 			restore: {},
 			saveAsImage: {},
-			dataView: {},
-			dataZoom: {}
+			dataView: {}
 		}
 	},
 	series: [{

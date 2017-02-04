@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>line graph viewer</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />    
+		<link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />		
+		<link href="../lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/generalStyle.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+				</div>
+				<div class="col-md-6">
+					<div id="showcase"></div>
+				</div>
+			</div>		
+		</div>
+		<div class="container">
+			<!-- 全局字体样式 -->
+			<div class="row" id="details_textStyle">
+				<h3 class="greenBlue bold">json.textStyle | object | 全局字体样式</h3>
+			</div>	
+			<div class="row">
+				<p>textStyle.fontFamily | string | 字体</p>
+				<p>textStyle.fontSize | int | 字体大小</p>
+				<p>textStyle.color | string | 字体颜色</p>
+				<p>textStyle.fontStyle | "normal" "italic" "oblique" | 字体风格</p>
+				<p>textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 字体粗细</p>				
+			</div>
+			<!-- 主标题 -->
+			<div class="row" id="details_title">
+				<h3 class="greenBlue bold">json.title | object | 主标题</h3>
+			</div>
+			<div class="row">
+				<p>title.show | boolean | 是否显示标题组件</p>
+				<p>title.text | string | 标题文本，支持\n换行</p>
+				<p>title.textStyle | object | 文本样式设置</p>
+					<p>&emsp;&emsp;textStyle.fontFamily | string | 主题文本字体</p>
+					<p>&emsp;&emsp;textStyle.fontSize | int | 主题文本大小</p>
+					<p>&emsp;&emsp;textStyle.color | string | 主题文本颜色</p>
+					<p>&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 主题文本风格</p>
+					<p>&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 主题文本粗细</p>	
+				<p>title.subtext | string | 副标题文本，支持\n换行</p>
+				<p>title.padding | [int, int, int, int] | 标题内边距</p>
+				<p>title.left | int 或 "int%" 或 "left" "center" "right"| 标题距离容器左侧的距离</p>
+				<p>title.right | int 或 "int%" | 标题距离容器右侧的距离</p>
+				<p>title.top | int 或 "int%" 或 "top" "middle" "bottom" | 标题距离容器顶端的距离</p>
+				<p>title.bottom | int 或 "int%" | 标题距离容器底端的距离</p>
+				<p>title.backgroundColor | string | 标题背景色</p>
+				<p>title.borderColor | string | 标题边框颜色</p>
+				<p>title.borderWidth | int | 标题边框粗细</p>
+				<p>title.zlevel | int | zlevel值，优先级高于z值，每个zlevel值对应一个Canvas层</p>
+				<p>title.z | int | z值，优先级低于zlevel值，在同一个Canvas层中再分层</p>
+			</div>
+			<!-- 工具栏 -->
+			<div class="row" id="details_toolbox">
+				<h3 class="greenBlue bold">json.toolbox | object | 工具栏</h3>
+			</div>
+			<div class="row">
+				<p>toolbox.show | boolean | 是否显示工具栏组件</p>
+				<p>toolbox.orient | "horizontal" "vertical" | 工具栏的布局朝向</p>
+				<p>toolbox.itemSize | int | 工具栏图标大小</p>
+				<p>toolbox.itemGap | int | 工具栏图标间隔</p>
+				<p>toolbox.showTitle | boolean | 是否在鼠标hover时显示按钮功能</p>
+				<p>toolbox.feature | object | 工具栏的功能</p>
+					<p>&emsp;&emsp;feature.restore | object | 还原配置项为默认值</p>	
+						<p>&emsp;&emsp;&emsp;&emsp;restore.show | boolean | 是否显示此工具</p>				
+					<p>&emsp;&emsp;feature.saveAsImage | object | 保存此图表为图片</p>
+						<p>&emsp;&emsp;&emsp;&emsp;saveAsImage.show | boolean | 是否显示此工具</p>
+						<p>&emsp;&emsp;&emsp;&emsp;saveAsImage.type | "png" "jpeg" | 保存的图片格式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;saveAsImage.name | string | 保存的图片文件名</p>
+						<p>&emsp;&emsp;&emsp;&emsp;saveAsImage.backgroundColor | string | 保存的图片背景颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;saveAsImage.pixelRatio | int | 保存的图片分辨率比例，默认为1，即跟容器的分辨率相同</p>
+					<p>&emsp;&emsp;feature.dataView | object | 数据视图工具，可以展现当前图表所用的数据，编辑后可以动态更新。</p>	
+						<p>&emsp;&emsp;&emsp;&emsp;dataView.show | boolean | 是否显示此工具</p>
+						<p>&emsp;&emsp;&emsp;&emsp;dataView.readOnly | boolean | 是否只读</p>
+						<p>&emsp;&emsp;&emsp;&emsp;dataView.backgroundColor | string | 数据视图边栏颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;dataView.textareaColor | string | 数据视图文本输入区背景颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;dataView.textareaBorderColor | string | 数据视图文本输入区边框颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;dataView.textColor | string | 数据视图文本颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;dataView.buttonColor | string | 数据视图按钮颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;dataView.buttonTextColor | string | 数据视图按钮文本颜色</p>
+					<p>&emsp;&emsp;feature.dataZoom | object | 区域缩放，目前只支持坐标型图表的缩放</p>	
+						<p>&emsp;&emsp;&emsp;&emsp;dataZoom.show | boolean | 是否显示此工具</p>
+						<p>&emsp;&emsp;&emsp;&emsp;dataZoom.xAxisIndex | boolean 或 int	或 array | 例如: false:不控制x轴 3:只控制axisIndex为3的x轴 [0, 3]:只控制axisIndex为0和3的x轴</p>
+						<p>&emsp;&emsp;&emsp;&emsp;dataZoom.yAxisIndex | boolean 或 int	或 array | 例如: false:不控制y轴 3:只控制axisIndex为3的y轴 [0, 3]:只控制axisIndex为0和3的y轴</p>
+				<p>toolbox.left | int 或 "int%" 或 "left" "center" "right"| 工具栏距离容器左侧的距离</p>
+				<p>toolbox.right | int 或 "int%" | 工具栏距离容器右侧的距离</p>
+				<p>toolbox.top | int 或 "int%" 或 "top" "middle" "bottom" | 工具栏距离容器顶端的距离</p>
+				<p>toolbox.bottom | int 或 "int%" | 工具栏距离容器底端的距离</p>
+				<p>toolbox.zlevel | int | zlevel值，优先级高于z值，每个zlevel值对应一个Canvas层</p>
+				<p>toolbox.z | int | z值，优先级低于zlevel值，在同一个Canvas层中再分层</p>	
+				<p>toolbox.width | int 或 "auto" | 工具栏的宽度，默认auto自适应</p>
+				<p>toolbox.height | int 或 "auto" | 工具栏的高度，默认auto自适应</p>
+			</div>
+			<!-- 折线图主体 -->
+			
+			<!-- 容器背景颜色 -->
+			<div class="row" id="details_backgroundColor">
+				<h3 class="greenBlue bold">json.backgroundColor | string | 容器背景颜色</h3>
+			</div>	
+			<div class="row">
+				<p>json.backgroundColor | string | 容器背景颜色，默认为"transparent"透明</p>
+			</div>
+		</div>
+		<script src="../lib/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/checkbox.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/echarts.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/linegraphScript.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>	
