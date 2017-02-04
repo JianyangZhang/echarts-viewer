@@ -1,5 +1,5 @@
 var myChart = echarts.init(document.getElementById("showcase"));
-var gauge = {
+var options = {
 	title: {show: true, text: "CPU 利用率", textStyle: {color: "white"}, left: "center"},
 	backgroundColor: "#1F1D1D",
 	tooltip : {
@@ -50,21 +50,21 @@ var gauge = {
 		splitNumber: 1
 	}]
 };
-myChart.setOption(gauge);
+myChart.setOption(options);
 setInterval(function () {
 	// Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
 	var randomValue = Math.floor(Math.random() * (100 - 25 + 1)) + 25;
-	gauge.series[0].data[0].value = randomValue;
-	gauge.series[0].axisLine.lineStyle.color[0][0] = randomValue / 100;
+	options.series[0].data[0].value = randomValue;
+	options.series[0].axisLine.lineStyle.color[0][0] = randomValue / 100;
 	if (randomValue <= 60) {
-		gauge.series[0].axisLine.lineStyle.color[0][1] = "#32A82D";
+		options.series[0].axisLine.lineStyle.color[0][1] = "#32A82D";
 	}
 	if (randomValue > 60 && randomValue <= 85) {
-		gauge.series[0].axisLine.lineStyle.color[0][1] = "#D77728";
+		options.series[0].axisLine.lineStyle.color[0][1] = "#D77728";
 	}
 	if (randomValue > 85) {
-		gauge.series[0].axisLine.lineStyle.color[0][1] = "#E03434";	
+		options.series[0].axisLine.lineStyle.color[0][1] = "#E03434";	
 	}
-	myChart.setOption(gauge);
+	myChart.setOption(options);
 }, 1500);
 

@@ -10,7 +10,7 @@ for (var i = 1; i < 20000; i++) {
 }
 
 var myChart = echarts.init(document.getElementById("showcase"));
-var linegraph = {
+var options = {
     tooltip: {
         trigger: "axis",
         position: function (pt) {
@@ -19,12 +19,14 @@ var linegraph = {
     },
 	textStyle: {color: "white"},
     title: {
+		show: true,
         left: "center",
         text: "模拟数据",
 		textStyle: {color: "white"}
     },	
 	backgroundColor: "#1F1D1D",
     toolbox: {
+		show: true,
 		right: "3%",
         feature: {
             dataZoom: {
@@ -89,4 +91,4 @@ var linegraph = {
     ]
 };
 
-myChart.setOption(linegraph);
+myChart.setOption(options);

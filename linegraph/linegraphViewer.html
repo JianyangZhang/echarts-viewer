@@ -16,6 +16,7 @@
 					<div class="entry"><span class="margin-right bold">容器背景颜色 (json.backgroundColor)</span><input id="toggle-backgroundColor" type="checkbox" data-group-cls="btn-group-sm" checked /><a href="#details_backgroundColor" class="btn btn-info btn-sm margin-left">详细配置</a></div>
 					<div class="entry"><span class="margin-right bold">主标题 (json.title)</span><input id="toggle-title" type="checkbox" data-group-cls="btn-group-sm" checked /><a href="#details_title" class="btn btn-info btn-sm margin-left">详细配置</a></div>
 					<div class="entry"><span class="margin-right bold">工具栏 (json.toolbox)</span><input id="toggle-toolbox" type="checkbox" data-group-cls="btn-group-sm" checked /><a href="#details_toolbox" class="btn btn-info btn-sm margin-left">详细配置</a></div>
+					<div class="entry"><span class="margin-right bold">坐标轴 (json.xAxis / json.yAxis)</span><input id="toggle-axis" type="checkbox" data-group-cls="btn-group-sm" checked disabled /><a href="#details_axis" class="btn btn-info btn-sm margin-left">详细配置</a></div>
 					<div class="entry"><span class="margin-right bold">折线图主体 (json.series[index].type: "line")</span><input id="toggle-series" type="checkbox" data-group-cls="btn-group-sm" checked disabled /><a href="#details_series" class="btn btn-info btn-sm margin-left">详细配置</a></div>	
 				</div>
 				<div class="col-md-6">
@@ -23,7 +24,7 @@
 				</div>
 			</div>		
 		</div>
-		<div class="container">
+		<div class="container" id="contact">
 			<!-- 全局字体样式 -->
 			<div class="row" id="details_textStyle">
 				<h3 class="greenBlue bold">json.textStyle | object | 全局字体样式</h3>
@@ -108,8 +109,33 @@
 				<p>toolbox.width | int 或 "auto" | 工具栏的宽度，默认auto自适应</p>
 				<p>toolbox.height | int 或 "auto" | 工具栏的高度，默认auto自适应</p>
 			</div>
+			<!-- x轴 -->
+			<div class="row" id="details_axis">
+				<h3 class="greenBlue bold">json.xAxis / json.yAxis | object | 坐标轴相关配置</h3>
+			</div>		
+			<div class="row">
+				<p>xAxis.position | "top" "bottom" | x轴的位置 / yAxis.position | "left" "right" | y轴的位置</p>
+				<p>xAxis.offset / yAxis.offset | int | 坐标相对于默认位置的偏移，相同的position有多个坐标轴的时候有用</p>
+				<p>xAxis.type / yAxis.type | "value" "category" "time" "log" | 坐标轴的类型，value适用于连续数据，category适用于离散数据，time适用于连续的时序数据，log适用于对数数据</p>
+				<p>xAxis.name / yAxis.name | string | 坐标轴名称</p>
+				<p>xAxis.nameLocation / yAxis.nameLocation | "start" "middle" "end" | 坐标轴名称显示位置</p>
+				<p>xAxis.nameTextStyle / yAxis.nameTextStyle | object | 坐标轴名称的文字样式</p>
+					<p>&emsp;&emsp;nameTextStyle.fontFamily | string | 坐标轴名称文本字体</p>
+					<p>&emsp;&emsp;nameTextStyle.fontSize | int | 坐标轴名称文本大小</p>
+					<p>&emsp;&emsp;nameTextStyle.color | string | 坐标轴名称文本颜色</p>
+					<p>&emsp;&emsp;nameTextStyle.fontStyle | "normal" "italic" "oblique" | 坐标轴名称文本风格</p>
+					<p>&emsp;&emsp;nameTextStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 坐标轴名称文本粗细</p>
+				<p>xAxis.nameGap / yAxis.nameGap | int | 坐标轴名称与轴线之间的距离</p>	
+				<p>xAxis.inverse / yAxis.inverse | boolean | 是否是反向坐标轴</p>
+				<p>xAxis.min / yAxis.min | int 或 "auto" "dataMin" | 坐标轴刻度最小值，auto会自动计算最小值保证坐标轴刻度的均匀分布，dataMin会取数据在该轴上的最小值作为最小刻度</p>
+				<p>xAxis.max / yAxis.max | int 或 "auto" "dataMax" | 坐标轴刻度最大值，auto会自动计算最大值保证坐标轴刻度的均匀分布，dataMax会取数据在该轴上的最大值作为最大刻度</p>
+				<p>xAxis.scale / yAxis.scale | boolean | 只对type为value的图表有效，设置成true后，坐标刻度不会强制包含0刻度</p>
+				<p>xAxis.minInterval / yAxis.minInterval | int | 只对type为value的图表有效，坐标轴的最小间隔大小，比如可以设置成1来保证坐标轴分割刻度显示成整数</p>
+				<p>xAxis.splitNumber / yAxis.splitNumber | int | 在type为category的图表中无效，坐标轴的分割段数，只是个预估值，最后实际显示的段数可能会自动做调整</p>
+				<p>xAxis.interval / yAxis.interval | int | 设置坐标轴分割间隔，因为splitNumber可能会自动做调整，可以使用interval配合min max强制设定刻度划分（不建议使用）</p>
+			</div>			
+			
 			<!-- 折线图主体 -->
-		
 		</div>
 		<script src="../lib/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
