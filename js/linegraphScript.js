@@ -30,9 +30,9 @@ var linegraph = {
             dataZoom: {
                 yAxisIndex: "none"
             },
-            restore: {},
-            saveAsImage: {},
-			dataView: {}
+			dataView: {},
+			saveAsImage: {},
+			restore: {}
         }
     },
     xAxis: {
