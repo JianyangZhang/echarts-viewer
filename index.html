@@ -1,24 +1,44 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js" lang="zh-Hans">
 	<head>
-		<title>echarts viewer</title>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />    
-		<link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />		
-		<link href="./css/indexStyle.css" rel="stylesheet" type="text/css" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5">
+		<title>echarts viewer</title>
+		<link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="./css/bg.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
-		<div id="btnContainer" class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<a href="./gauge/gaugeViewer.html" class="btn btn-lg btn-primary" target="_blank">仪表盘 (Gauge)</a>
+		<div class="headline-bg index-headline-bg wavesWapper">
+			<div class="container">
+				<div style="padding-top:5vw; padding-bottom:0.5vw" class="row">
+					<div class="col-md-6">
+						<a style="width:100%" href="./gauge/gaugeViewer.html" class="btn btn-lg round btn-success" target="_blank">仪表盘 (Gauge)</a>
+					</div>
 				</div>
-				<div class="col-md-6">
-					<a href="./linegraph/linegraphViewer.html" class="btn btn-lg btn-primary" target="_blank">折线图 (Line Graph)</a>
-				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<a style="width:100%" href="./linegraph/linegraphViewer.html" class="btn btn-lg round btn-success" target="_blank">折线图 (Line Graph)</a>
+					</div>
+				</div>	
 			</div>	
+			<canvas id="waves" class="waves"></canvas>		
+		</div>
+		<div class="features-video section section-on-bg feature-index">
+			<div class="container"> 
+				<div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-12">
+					</div>
+				</div>         
+			</div>
+		</div>
+		<div style="text-align:center; margin: -87px 0; font:bold 1vw 'MicroSoft YaHei'">
+			<p><a style="text-decoration:none; color:#0000FF" href="https://github.com/JianyangZhang/echarts-viewer" target="_blank">Echarts Viewer</a></p>
+			<p style="padding-top:200px; font-weight:normal;">for deep report internal use</p>
 		</div>
 		<script src="./lib/jquery/jquery.min.js"></script>
-		<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+		<script src="./lib/bootstrap/js/bootstrap.min.js"></script>		
+		<script src="./js/vendors.js"></script>
+		<script src="./js/index.js"></script>
 	</body>
-</html>	
+</html>
