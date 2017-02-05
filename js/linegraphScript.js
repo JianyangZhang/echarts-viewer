@@ -40,11 +40,17 @@ var options = {
     xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: date
+        data: date,
+		axisLine: {lineStyle: {color: "white"}},
+		splitLine: {show: false, lineStyle: {type: "dashed"}},
+		splitArea: {show: false}
     },
     yAxis: {
         type: 'value',
-        boundaryGap: [0, '100%']
+        boundaryGap: [0, '100%'],
+		axisLine: {lineStyle: {color: "white"}},
+		splitLine: {show: true, lineStyle: {type: "dashed"}},
+		splitArea: {show: false}
     },
     dataZoom: [{
         type: 'inside',

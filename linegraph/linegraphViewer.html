@@ -17,6 +17,10 @@
 					<div class="entry"><span class="margin-right bold">主标题 (json.title)</span><input id="toggle-title" type="checkbox" data-group-cls="btn-group-sm" checked /><a href="#details_title" class="btn btn-info btn-sm margin-left">详细配置</a></div>
 					<div class="entry"><span class="margin-right bold">工具栏 (json.toolbox)</span><input id="toggle-toolbox" type="checkbox" data-group-cls="btn-group-sm" checked /><a href="#details_toolbox" class="btn btn-info btn-sm margin-left">详细配置</a></div>
 					<div class="entry"><span class="margin-right bold">坐标轴 (json.xAxis / json.yAxis)</span><input id="toggle-axis" type="checkbox" data-group-cls="btn-group-sm" checked disabled /><a href="#details_axis" class="btn btn-info btn-sm margin-left">详细配置</a></div>
+					<div class="entry"><span class="margin-right bold">网格线-纵向 (json.xAxis.splitLine)</span><input id="toggle-splitLine-x" type="checkbox" data-group-cls="btn-group-sm" /><a href="#details_splitLine" class="btn btn-info btn-sm margin-left">详细配置</a></div>
+					<div class="entry"><span class="margin-right bold">网格线-横向 (json.yAxis.splitLine)</span><input id="toggle-splitLine-y" type="checkbox" data-group-cls="btn-group-sm" checked /><a href="#details_splitLine" class="btn btn-info btn-sm margin-left">详细配置</a></div>
+					<div class="entry"><span class="margin-right bold">区域间隔色-基于x轴 (json.xAxis.splitArea)</span><input id="toggle-splitArea-x" type="checkbox" data-group-cls="btn-group-sm" /><a href="#details_splitArea" class="btn btn-info btn-sm margin-left">详细配置</a></div>
+					<div class="entry"><span class="margin-right bold">区域间隔色-基于y轴 (json.yAxis.splitArea)</span><input id="toggle-splitArea-y" type="checkbox" data-group-cls="btn-group-sm" /><a href="#details_splitArea" class="btn btn-info btn-sm margin-left">详细配置</a></div>
 					<div class="entry"><span class="margin-right bold">折线图主体 (json.series[index].type: "line")</span><input id="toggle-series" type="checkbox" data-group-cls="btn-group-sm" checked disabled /><a href="#details_series" class="btn btn-info btn-sm margin-left">详细配置</a></div>	
 				</div>
 				<div class="col-md-6">
@@ -133,6 +137,52 @@
 				<p>xAxis.minInterval / yAxis.minInterval | int | 只对type为value的图表有效，坐标轴的最小间隔大小，比如可以设置成1来保证坐标轴分割刻度显示成整数</p>
 				<p>xAxis.splitNumber / yAxis.splitNumber | int | 在type为category的图表中无效，坐标轴的分割段数，只是个预估值，最后实际显示的段数可能会自动做调整</p>
 				<p>xAxis.interval / yAxis.interval | int | 设置坐标轴分割间隔，因为splitNumber可能会自动做调整，可以使用interval配合min max强制设定刻度划分（不建议使用）</p>
+				<p>xAxis.boundaryGap / yAxis.boundaryGap | boolean 或 ["int%", "int%"] 或 [int, int] | 坐标轴两端的"留白"，category类坐标轴设置boolean，非category类坐标轴设置array</p>
+				<p>xAxis.silent / yAxis.silent | boolean | 坐标轴是否是静态无法交互</p>
+				<p>xAxis.triggerEvent / yAxis.triggerEvent | boolean | 坐标轴的标签是否可以响应鼠标事件</p>
+				<p>xAxis.axisLine / yAxis.axisLine | object | 坐标轴轴线相关设置</p>
+					<p>&emsp;&emsp;axisLine.show | boolean | 是否显示坐标轴轴线</p>
+					<p>&emsp;&emsp;axisLine.onZero | boolean | 轴线是否在另一个轴的0刻度上</p>
+					<p>&emsp;&emsp;axisLine.lineStyle | object | 坐标轴轴线样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.color | string | 坐标轴的颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.width | int | 坐标轴的线宽</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.type | "solid" "dashed" "dotted" | 坐标轴线的类型</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.opacity | int | 坐标轴的透明度，范围是0到1，0代表完全透明，1代表完全不透明</p>
+				<p>xAxis.axisTick / yAxis.axisTick | object | 坐标轴刻度相关设置</p>	
+					<p>&emsp;&emsp;axisTick.show | boolean | 是否显示坐标轴刻度</p>
+					<p>&emsp;&emsp;axisTick.alignWithLabel | boolean | 在type为category的图表中，在 boundaryGap 为 true 的时候有效，可以保证刻度线和标签对齐</p>
+					<p>&emsp;&emsp;axisTick.interval | int | 坐标轴刻度的显示间隔，在category类图表中有效</p>
+					<p>&emsp;&emsp;axisTick.inside | boolean | 坐标轴刻度是否朝内，默认朝外</p>
+					<p>&emsp;&emsp;axisTick.length | int | 坐标轴刻度的长度</p>
+					<p>&emsp;&emsp;axisTick.lineStyle | object | 坐标轴刻度样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.color | string | 坐标轴刻度的颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.width | int | 坐标轴刻度的线宽</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.type | "solid" "dashed" "dotted" | 坐标轴刻度的类型</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.opacity | int | 坐标轴刻度的透明度，范围是0到1，0代表完全透明，1代表完全不透明</p>
+				<p>xAxis.axisLabel / yAxis.axisLabel | object | 坐标轴标签相关设置</p>	
+					<p>&emsp;&emsp;axisLabel.show | boolean | 是否显示坐标轴标签</p>
+					<p>&emsp;&emsp;axisLabel.interval | int | 坐标轴标签的显示间隔，在category类图表中有效</p>
+					<p>&emsp;&emsp;axisLabel.inside | boolean | 坐标轴标签是否朝内，默认朝外</p>
+					<p>&emsp;&emsp;axisLabel.margin | int | 刻度标签与轴线之间的距离</p>
+					<p>&emsp;&emsp;axisLabel.textStyle | object | 刻度标签与轴线之间的距离</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontFamily | string | 刻度标签文本字体</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontSize | int | 刻度标签文本大小</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.color | string | 刻度标签文本颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 刻度标签文本风格</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 刻度标签文本粗细</p>
+				<p id="details_splitLine">xAxis.splitLine / yAxis.splitLine | object | 分隔线相关设置</p>		
+					<p>&emsp;&emsp;splitLine.show | boolean | 是否显示分隔线</p>
+					<p>&emsp;&emsp;splitLine.interval | int | 分隔线的显示间隔，在category类图表中有效</p>
+					<p>&emsp;&emsp;splitLine.lineStyle | object | 分隔线的样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.color | string | 分隔线的颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.width | int | 分隔线的线宽</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.type | "solid" "dashed" "dotted" | 分隔线的类型</p>
+						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.opacity | int | 分隔线的透明度，范围是0到1，0代表完全透明，1代表完全不透明</p>
+				<p id="details_splitArea">xAxis.splitArea / yAxis.splitArea | object | 区域间隔相关设置</p>		
+					<p>&emsp;&emsp;splitArea.show | boolean | 是否显示区域间隔</p>
+					<p>&emsp;&emsp;splitArea.areaStyle | object | 区域间隔的样式设置</p>
+						<p>&emsp;&emsp;&emsp;&emsp;areaStyle.color | array | 区域间隔的颜色，如["rgba(250, 250, 250, 0.3)", "rgba(200, 200, 200, 0.3)"]</p>
+						<p>&emsp;&emsp;&emsp;&emsp;areaStyle.opacity | int | 区域间隔的透明度，范围是0到1，0代表完全透明，1代表完全不透明</p>
 			</div>			
 			
 			<!-- 折线图主体 -->
