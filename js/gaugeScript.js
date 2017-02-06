@@ -1,6 +1,6 @@
 var myChart = echarts.init(document.getElementById("showcase"));
 var options = {
-	title: {show: true, text: "CPU 利用率", textStyle: {color: "white"}, left: "center"},
+	title: {show: true, text: "CPU Utilization", textStyle: {color: "white"}, left: "center"},
 	backgroundColor: "#1F1D1D",
 	tooltip : {
 		formatter: "{a} <br/>{b} : {c}%"
@@ -16,7 +16,7 @@ var options = {
 		}
 	},
 	series: [{
-		name: "CPU Usage",
+		name: "CPU Utilization",
 		type: "gauge",
 		min: 0,
 		max: 100,
@@ -33,7 +33,7 @@ var options = {
 		endAngle: -25,
 		splitNumber: 1
 	}, {
-		name: "Outer Indicator",
+		name: "",
 		type: "gauge",
 		min: 0,
 		max: 100,						
@@ -67,4 +67,3 @@ setInterval(function () {
 	}
 	myChart.setOption(options);
 }, 1500);
-

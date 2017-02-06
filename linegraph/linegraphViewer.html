@@ -21,6 +21,7 @@
 					<div class="entry"><span class="margin-right bold">网格线-横向 (json.yAxis.splitLine)</span><input id="toggle-splitLine-y" type="checkbox" data-group-cls="btn-group-sm" checked /><a href="#details_splitLine" class="btn btn-info btn-sm margin-left">详细配置</a></div>
 					<div class="entry"><span class="margin-right bold">区域间隔色-基于x轴 (json.xAxis.splitArea)</span><input id="toggle-splitArea-x" type="checkbox" data-group-cls="btn-group-sm" /><a href="#details_splitArea" class="btn btn-info btn-sm margin-left">详细配置</a></div>
 					<div class="entry"><span class="margin-right bold">区域间隔色-基于y轴 (json.yAxis.splitArea)</span><input id="toggle-splitArea-y" type="checkbox" data-group-cls="btn-group-sm" /><a href="#details_splitArea" class="btn btn-info btn-sm margin-left">详细配置</a></div>
+					<div class="entry"><span class="margin-right bold">数据缩放工具 (json.dataZoom)</span><input id="toggle-dataZoom" type="checkbox" data-group-cls="btn-group-sm" checked /><a href="#details_dataZoom" class="btn btn-info btn-sm margin-left">详细配置</a></div>	
 					<div class="entry"><span class="margin-right bold">折线图主体 (json.series[index].type: "line")</span><input id="toggle-series" type="checkbox" data-group-cls="btn-group-sm" checked disabled /><a href="#details_series" class="btn btn-info btn-sm margin-left">详细配置</a></div>	
 				</div>
 				<div class="col-md-6">
@@ -45,7 +46,7 @@
 				<h3 class="greenBlue bold">json.backgroundColor | string | 容器背景颜色</h3>
 			</div>	
 			<div class="row">
-				<p>json.backgroundColor | string | 容器背景颜色，默认为"transparent"透明</p>
+				<p>backgroundColor | string | 容器背景颜色，默认为"transparent"透明</p>
 			</div>			
 			<!-- 主标题 -->
 			<div class="row" id="details_title">
@@ -102,8 +103,8 @@
 						<p>&emsp;&emsp;&emsp;&emsp;dataView.buttonTextColor | string | 数据视图按钮文本颜色</p>
 					<p>&emsp;&emsp;feature.dataZoom | object | 区域缩放，目前只支持坐标型图表的缩放</p>	
 						<p>&emsp;&emsp;&emsp;&emsp;dataZoom.show | boolean | 是否显示此工具</p>
-						<p>&emsp;&emsp;&emsp;&emsp;dataZoom.xAxisIndex | boolean 或 int	或 array | 例如: false:不控制x轴 3:只控制axisIndex为3的x轴 [0, 3]:只控制axisIndex为0和3的x轴</p>
-						<p>&emsp;&emsp;&emsp;&emsp;dataZoom.yAxisIndex | boolean 或 int	或 array | 例如: false:不控制y轴 3:只控制axisIndex为3的y轴 [0, 3]:只控制axisIndex为0和3的y轴</p>
+						<p>&emsp;&emsp;&emsp;&emsp;dataZoom.xAxisIndex | boolean 或 int	或 array | 例如: false:不控制x轴；3:只控制axisIndex为3的x轴；[0, 3]:只控制axisIndex为0和3的x轴</p>
+						<p>&emsp;&emsp;&emsp;&emsp;dataZoom.yAxisIndex | boolean 或 int	或 array | 例如: false:不控制y轴；3:只控制axisIndex为3的y轴；[0, 3]:只控制axisIndex为0和3的y轴</p>
 				<p>toolbox.left | int 或 "int%" 或 "left" "center" "right"| 工具栏距离容器左侧的距离</p>
 				<p>toolbox.right | int 或 "int%" | 工具栏距离容器右侧的距离</p>
 				<p>toolbox.top | int 或 "int%" 或 "top" "middle" "bottom" | 工具栏距离容器顶端的距离</p>
@@ -113,14 +114,14 @@
 				<p>toolbox.width | int 或 "auto" | 工具栏的宽度，默认auto自适应</p>
 				<p>toolbox.height | int 或 "auto" | 工具栏的高度，默认auto自适应</p>
 			</div>
-			<!-- x轴 -->
+			<!-- 坐标轴 -->
 			<div class="row" id="details_axis">
 				<h3 class="greenBlue bold">json.xAxis / json.yAxis | object | 坐标轴相关配置</h3>
 			</div>		
 			<div class="row">
 				<p>xAxis.position | "top" "bottom" | x轴的位置 / yAxis.position | "left" "right" | y轴的位置</p>
 				<p>xAxis.offset / yAxis.offset | int | 坐标相对于默认位置的偏移，相同的position有多个坐标轴的时候有用</p>
-				<p>xAxis.type / yAxis.type | "value" "category" "time" "log" | 坐标轴的类型，value适用于连续数据，category适用于离散数据，time适用于连续的时序数据，log适用于对数数据</p>
+				<p>xAxis.type / yAxis.type | "value" "category" "time" "log" | 坐标轴的类型: value适用于连续数据；category适用于离散数据；time适用于连续的时序数据；log适用于对数数据</p>
 				<p>xAxis.name / yAxis.name | string | 坐标轴名称</p>
 				<p>xAxis.nameLocation / yAxis.nameLocation | "start" "middle" "end" | 坐标轴名称显示位置</p>
 				<p>xAxis.nameTextStyle / yAxis.nameTextStyle | object | 坐标轴名称的文字样式</p>
@@ -135,9 +136,9 @@
 				<p>xAxis.max / yAxis.max | int 或 "auto" "dataMax" | 坐标轴刻度最大值，auto会自动计算最大值保证坐标轴刻度的均匀分布，dataMax会取数据在该轴上的最大值作为最大刻度</p>
 				<p>xAxis.scale / yAxis.scale | boolean | 只对type为value的图表有效，设置成true后，坐标刻度不会强制包含0刻度</p>
 				<p>xAxis.minInterval / yAxis.minInterval | int | 只对type为value的图表有效，坐标轴的最小间隔大小，比如可以设置成1来保证坐标轴分割刻度显示成整数</p>
-				<p>xAxis.splitNumber / yAxis.splitNumber | int | 在type为category的图表中无效，坐标轴的分割段数，只是个预估值，最后实际显示的段数可能会自动做调整</p>
+				<p>xAxis.splitNumber / yAxis.splitNumber | int | category轴无效，坐标轴的分割段数，只是个预估值，最后实际显示的段数可能会自动做调整</p>
 				<p>xAxis.interval / yAxis.interval | int | 设置坐标轴分割间隔，因为splitNumber可能会自动做调整，可以使用interval配合min max强制设定刻度划分（不建议使用）</p>
-				<p>xAxis.boundaryGap / yAxis.boundaryGap | boolean 或 ["int%", "int%"] 或 [int, int] | 坐标轴两端的"留白"，category类坐标轴设置boolean，非category类坐标轴设置array</p>
+				<p>xAxis.boundaryGap / yAxis.boundaryGap | boolean 或 ["int%", "int%"] 或 [int, int] | 坐标轴两端的"留白"，category轴设置boolean，非category轴设置array</p>
 				<p>xAxis.silent / yAxis.silent | boolean | 坐标轴是否是静态无法交互</p>
 				<p>xAxis.triggerEvent / yAxis.triggerEvent | boolean | 坐标轴的标签是否可以响应鼠标事件</p>
 				<p>xAxis.axisLine / yAxis.axisLine | object | 坐标轴轴线相关设置</p>
@@ -150,8 +151,8 @@
 						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.opacity | int | 坐标轴的透明度，范围是0到1，0代表完全透明，1代表完全不透明</p>
 				<p>xAxis.axisTick / yAxis.axisTick | object | 坐标轴刻度相关设置</p>	
 					<p>&emsp;&emsp;axisTick.show | boolean | 是否显示坐标轴刻度</p>
-					<p>&emsp;&emsp;axisTick.alignWithLabel | boolean | 在type为category的图表中，在 boundaryGap 为 true 的时候有效，可以保证刻度线和标签对齐</p>
-					<p>&emsp;&emsp;axisTick.interval | int | 坐标轴刻度的显示间隔，在category类图表中有效</p>
+					<p>&emsp;&emsp;axisTick.alignWithLabel | boolean | 在category轴而且boundaryGap为true的时候有效，可以保证刻度线和标签对齐</p>
+					<p>&emsp;&emsp;axisTick.interval | int | 坐标轴刻度的显示间隔，在category轴有效</p>
 					<p>&emsp;&emsp;axisTick.inside | boolean | 坐标轴刻度是否朝内，默认朝外</p>
 					<p>&emsp;&emsp;axisTick.length | int | 坐标轴刻度的长度</p>
 					<p>&emsp;&emsp;axisTick.lineStyle | object | 坐标轴刻度样式</p>
@@ -161,7 +162,7 @@
 						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.opacity | int | 坐标轴刻度的透明度，范围是0到1，0代表完全透明，1代表完全不透明</p>
 				<p>xAxis.axisLabel / yAxis.axisLabel | object | 坐标轴标签相关设置</p>	
 					<p>&emsp;&emsp;axisLabel.show | boolean | 是否显示坐标轴标签</p>
-					<p>&emsp;&emsp;axisLabel.interval | int | 坐标轴标签的显示间隔，在category类图表中有效</p>
+					<p>&emsp;&emsp;axisLabel.interval | int | 坐标轴标签的显示间隔，在category轴有效</p>
 					<p>&emsp;&emsp;axisLabel.inside | boolean | 坐标轴标签是否朝内，默认朝外</p>
 					<p>&emsp;&emsp;axisLabel.margin | int | 刻度标签与轴线之间的距离</p>
 					<p>&emsp;&emsp;axisLabel.textStyle | object | 刻度标签与轴线之间的距离</p>
@@ -172,7 +173,7 @@
 						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 刻度标签文本粗细</p>
 				<p id="details_splitLine">xAxis.splitLine / yAxis.splitLine | object | 分隔线相关设置</p>		
 					<p>&emsp;&emsp;splitLine.show | boolean | 是否显示分隔线</p>
-					<p>&emsp;&emsp;splitLine.interval | int | 分隔线的显示间隔，在category类图表中有效</p>
+					<p>&emsp;&emsp;splitLine.interval | int | 分隔线的显示间隔，在category轴有效</p>
 					<p>&emsp;&emsp;splitLine.lineStyle | object | 分隔线的样式</p>
 						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.color | string | 分隔线的颜色</p>
 						<p>&emsp;&emsp;&emsp;&emsp;lineStyle.width | int | 分隔线的线宽</p>
@@ -183,8 +184,30 @@
 					<p>&emsp;&emsp;splitArea.areaStyle | object | 区域间隔的样式设置</p>
 						<p>&emsp;&emsp;&emsp;&emsp;areaStyle.color | array | 区域间隔的颜色，如["rgba(250, 250, 250, 0.3)", "rgba(200, 200, 200, 0.3)"]</p>
 						<p>&emsp;&emsp;&emsp;&emsp;areaStyle.opacity | int | 区域间隔的透明度，范围是0到1，0代表完全透明，1代表完全不透明</p>
+				<p>xAxis.data / yAxis.data | array | 仅适用于category轴！</p>
+					<p>&emsp;&emsp;示例: data: ["Mon.", "Tue.", "Wed.", "Thur.", "Fri."]</p>
+					<p>&emsp;&emsp;还可以将data数组元素改为object类型进行详细设置，比如: data: [{value: "Mon.", textStyle: {fontSize: 20, color: "red"}}, "Tue.", "Wed.", "Thur.", "Fri."]</p>
+				<p>xAxis.zlevel / yAxis.zlevel | int | zlevel值，优先级高于z值，每个zlevel值对应一个Canvas层</p>
+				<p>xAxis.z / yAxis.z | int | z值，优先级低于zlevel值，在同一个Canvas层中再分层</p>
 			</div>			
-			
+			<!-- 数据区域缩放工具 -->
+			<div class="row" id="details_dataZoom">
+				<h3 class="greenBlue bold">json.dataZoom | array | 数据区域缩放工具相关配置, array中每个元素代表一种区域缩放工具</h3>
+			</div>		
+			<p>dataZoom[index].type | "inside" "slider" 另外一种在toolbox.feature.dataZoom中配置 | 数据区域缩放工具类型</p>	
+			<p><b>"inside"是内置型数据区域缩放工具，它的配置项有：</b></p>
+				<p>&emsp;&emsp;dataZoom[index].disabled | boolean | 是否禁用此功能</p>
+				<p>&emsp;&emsp;dataZoom[index].xAxisIndex | int 或 array | 设置此组件控制的x轴，默认控制和dataZoom平行的第一个xAxis。例如：</p>
+				<p>&emsp;&emsp;xAxis: [{第一个x轴}, {第二个x轴}, {第三个x轴}], dataZoom: [{xAxisIndex[0, 2]}, {xAxisIndex: 1}]</p>
+				<p>&emsp;&emsp;这表示有三个x轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个x轴，第二个dataZoom组件控制第二个x轴</p>
+				<p>&emsp;&emsp;dataZoom[index].disabled | boolean | 是否禁用此功能</p>
+				<p>&emsp;&emsp;dataZoom[index].yAxisIndex | int 或 array | 设置此组件控制的y轴，默认控制和dataZoom平行的第一个yAxis。例如：</p>
+				<p>&emsp;&emsp;yAxis: [{第一个y轴}, {第二个y轴}, {第三个y轴}], dataZoom: [{yAxisIndex[0, 2]}, {yAxisIndex: 1}]</p>
+				<p>&emsp;&emsp;这表示有三个y轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个y轴，第二个dataZoom组件控制第二个y轴</p>				
+				<p>&emsp;&emsp;dataZoom[index].filterMode | "filter" "empty" | </p>
+				<p>&emsp;&emsp;"filter"当前数据窗口外的数据被过滤掉，即会影响其他轴的数据范围；"empty"当前数据窗口外的数据被设置为空，即不会影响其他轴的数据范围</p>
+				<p>&emsp;&emsp;dataZoom[index].start | int | 数据窗口范围的起始百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>
+				<p>&emsp;&emsp;dataZoom[index].start | int | 数据窗口范围的结束百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>					
 			<!-- 折线图主体 -->
 		</div>
 		<script src="../lib/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>

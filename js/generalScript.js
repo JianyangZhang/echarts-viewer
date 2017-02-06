@@ -22,6 +22,9 @@ $("#toggle-backgroundColor").on("change", function() {
 		if (options.yAxis) {
 			options.yAxis.axisLine.lineStyle.color = "black";
 		}
+		if (options.dataZoom) {
+			options.dataZoom[1].textStyle.color = "black";
+		}
 	} else {
 		if (options.backgroundColor) {
 			options.backgroundColor = "#1F1D1D";
@@ -38,6 +41,9 @@ $("#toggle-backgroundColor").on("change", function() {
 		if (options.yAxis) {
 			options.yAxis.axisLine.lineStyle.color = "white";
 		}
+		if (options.dataZoom) {
+			options.dataZoom[1].textStyle.color = "white";
+		}		
 	}
 	myChart.setOption(options);
 });
@@ -109,6 +115,17 @@ $("#toggle-splitArea-y").on("change", function() {
 		options.yAxis.splitArea.show = false;
 	} else {
 		options.yAxis.splitArea.show = true;
+	}
+	myChart.setOption(options);
+});
+
+// 数据区域缩放工具
+$("#toggle-dataZoom").checkboxpicker();
+$("#toggle-dataZoom").on("change", function() {
+	if (options.dataZoom[1].show == true) {
+		options.dataZoom[1].show = false;
+	} else {
+		options.dataZoom[1].show = true;
 	}
 	myChart.setOption(options);
 });
