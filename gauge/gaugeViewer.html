@@ -9,14 +9,19 @@
 		<link href="../css/generalStyle.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
-		<div class="container">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="center"><span id="navbarText">仪表盘(Gauge)</span><div>
+			</div>
+		</nav>	
+		<div class="container" id="division1">
 			<div class="row">
 				<div class="col-md-6">
-					<div class="entry"><span class="margin-right bold">全局字体样式 (json.textStyle)</span><input id="toggle-textStyle" type="checkbox" data-group-cls="btn-group-sm" checked disabled /><a href="#details_textStyle" class="btn btn-info btn-sm margin-left">详细配置</a></div>
-					<div class="entry"><span class="margin-right bold">容器背景颜色 (json.backgroundColor)</span><input id="toggle-backgroundColor" type="checkbox" data-group-cls="btn-group-sm" checked /><a href="#details_backgroundColor" class="btn btn-info btn-sm margin-left">详细配置</a></div>
-					<div class="entry"><span class="margin-right bold">主标题 (json.title)</span><input id="toggle-title" type="checkbox" data-group-cls="btn-group-sm" checked /><a href="#details_title" class="btn btn-info btn-sm margin-left">详细配置</a></div>
-					<div class="entry"><span class="margin-right bold">工具栏 (json.toolbox)</span><input id="toggle-toolbox" type="checkbox" data-group-cls="btn-group-sm" checked /><a href="#details_toolbox" class="btn btn-info btn-sm margin-left">详细配置</a></div>
-					<div class="entry"><span class="margin-right bold">仪表盘主体 (json.series[index].type: "gauge")</span><input id="toggle-series" type="checkbox" data-group-cls="btn-group-sm" checked disabled /><a href="#details_series" class="btn btn-info btn-sm margin-left">详细配置</a></div>	
+					<div class="entry"><span class="margin-right bold">全局字体样式 (json.textStyle)</span><div class="goRight"><input id="toggle-textStyle" type="checkbox" data-group-cls="btn-group-xs" checked disabled /><a href="#details_textStyle" class="btn btn-info btn-xs margin-left">详细配置</a></div></div>
+					<div class="entry"><span class="margin-right bold">容器背景颜色 (json.backgroundColor)</span><div class="goRight"><input id="toggle-backgroundColor" type="checkbox" data-group-cls="btn-group-xs" checked /><a href="#details_backgroundColor" class="btn btn-info btn-xs margin-left">详细配置</a></div></div>
+					<div class="entry"><span class="margin-right bold">主标题 (json.title)</span><div class="goRight"><input id="toggle-title" type="checkbox" data-group-cls="btn-group-xs" checked /><a href="#details_title" class="btn btn-info btn-xs margin-left">详细配置</a></div></div>
+					<div class="entry"><span class="margin-right bold">工具栏 (json.toolbox)</span><div class="goRight"><input id="toggle-toolbox" type="checkbox" data-group-cls="btn-group-xs" checked /><a href="#details_toolbox" class="btn btn-info btn-xs margin-left">详细配置</a></div></div>
+					<div class="entry"><span class="margin-right bold">仪表盘主体 (json.series[index].type: "gauge")</span><div class="goRight"><input id="toggle-series" type="checkbox" data-group-cls="btn-group-xs" checked disabled /><a href="#details_series" class="btn btn-info btn-xs margin-left">详细配置</a></div></div>
 				</div>
 				<div class="col-md-6">
 					<div id="showcase"></div>
