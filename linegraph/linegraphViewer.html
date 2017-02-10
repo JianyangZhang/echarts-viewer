@@ -195,7 +195,7 @@
 				<h3 class="greenBlue bold">json.dataZoom | array | 数据区域缩放工具相关配置, array中每个元素代表一种区域缩放工具</h3>
 			</div>		
 			<p>dataZoom[index].type | "inside" "slider" 另外一种在toolbox.feature.dataZoom中配置 | 数据区域缩放工具类型</p>	
-			<p><b>"inside"是内置型数据区域缩放工具，它的配置项有：</b></p>
+			<p><b>"inside"是内置型数据区域缩放工具，它的常用配置项有：</b></p>
 				<p>&emsp;&emsp;dataZoom[index].disabled | boolean | 是否禁用此功能</p>
 				<p>&emsp;&emsp;dataZoom[index].xAxisIndex | int 或 array | 设置此组件控制的x轴，默认控制和dataZoom平行的第一个xAxis。例如：</p>
 				<p>&emsp;&emsp;xAxis: [{第一个x轴}, {第二个x轴}, {第三个x轴}], dataZoom: [{xAxisIndex[0, 2]}, {xAxisIndex: 1}]</p>
@@ -205,9 +205,56 @@
 				<p>&emsp;&emsp;yAxis: [{第一个y轴}, {第二个y轴}, {第三个y轴}], dataZoom: [{yAxisIndex[0, 2]}, {yAxisIndex: 1}]</p>
 				<p>&emsp;&emsp;这表示有三个y轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个y轴，第二个dataZoom组件控制第二个y轴</p>				
 				<p>&emsp;&emsp;dataZoom[index].filterMode | "filter" "empty" | </p>
-				<p>&emsp;&emsp;"filter"当前数据窗口外的数据被过滤掉，即会影响其他轴的数据范围；"empty"当前数据窗口外的数据被设置为空，即不会影响其他轴的数据范围</p>
+				<p>&emsp;&emsp;"filter":当前数据窗口外的数据被过滤掉，即会影响其他轴的数据范围；"empty":当前数据窗口外的数据被设置为空，即不会影响其他轴的数据范围</p>
 				<p>&emsp;&emsp;dataZoom[index].start | int | 数据窗口范围的起始百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>
-				<p>&emsp;&emsp;dataZoom[index].start | int | 数据窗口范围的结束百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>					
+				<p>&emsp;&emsp;dataZoom[index].end | int | 数据窗口范围的结束百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>	
+				<p>&emsp;&emsp;dataZoom[index].startValue | int 或 String 或 Date | 数据窗口范围的起始值，如果设置了.start则.startValue失效</p>
+				<p>&emsp;&emsp;对于category轴，startValue既可以设置为axis.data数组的index，也可以设置为数组值本身</p>
+				<p>&emsp;&emsp;dataZoom[index].endValue | int 或 String 或 Date | 数据窗口范围的结束值，如果设置了.end 则.endValue失效</p>
+				<p>&emsp;&emsp;对于category轴，endValue既可以设置为axis.data数组的index，也可以设置为数组值本身</p>	
+				<p>&emsp;&emsp;dataZoom[index].orient | "horizontal" "vertical" null | 控制横向数轴还是纵向数轴，默认为null</p>	
+				<p>&emsp;&emsp;dataZoom[index].zoomLock | boolean | 设置为true就是只能移动，不能缩放</p>	
+				<p>&emsp;&emsp;dataZoom[index].throttle | int | 设置视图刷新的频率，单位为毫秒，默认100</p>
+			<p><b>"slider"是滑块型数据区域缩放工具，它的常用配置项有：</b></p>	
+				<p>&emsp;&emsp;dataZoom[index].show | boolean | 是否显示此组件</p>
+				<p>&emsp;&emsp;dataZoom[index].backgroundColor | string | 组件的背景颜色</p>
+				<p>&emsp;&emsp;dataZoom[index].fillerColor | string | 选中范围的填充颜色</p>
+				<p>&emsp;&emsp;dataZoom[index].borderColor | string | 边框颜色</p>
+				<p>&emsp;&emsp;dataZoom[index].handleSize | int | 自定义手柄的尺寸</p>
+				<p>&emsp;&emsp;dataZoom[index].labelPrecision | int | 显示label的小数精度，默认根据数据自动决定</p>
+				<p>&emsp;&emsp;dataZoom[index].showDetail | boolean | 是否在拖拽时候显示详细数值信息</p>
+				<p>&emsp;&emsp;dataZoom[index].realtime | boolean | 是否实时更新视图。如果设置为 false，则只在拖拽结束的时候更新</p>
+				<p>&emsp;&emsp;dataZoom[index].textStyle | object | 组件中文字的样式</p>
+					<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontFamily | string | 组件中的文本字体</p>
+					<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontSize | int | 组件中的文本大小</p>
+					<p>&emsp;&emsp;&emsp;&emsp;textStyle.color | string | 组件中的文本颜色</p>
+					<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 组件中的文本风格</p>
+					<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 组件中的文本粗细</p>
+				<p>&emsp;&emsp;dataZoom[index].xAxisIndex | int 或 array | 设置此组件控制的x轴，默认控制和dataZoom平行的第一个xAxis。例如：</p>
+				<p>&emsp;&emsp;xAxis: [{第一个x轴}, {第二个x轴}, {第三个x轴}], dataZoom: [{xAxisIndex[0, 2]}, {xAxisIndex: 1}]</p>
+				<p>&emsp;&emsp;这表示有三个x轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个x轴，第二个dataZoom组件控制第二个x轴</p>
+				<p>&emsp;&emsp;dataZoom[index].disabled | boolean | 是否禁用此功能</p>
+				<p>&emsp;&emsp;dataZoom[index].yAxisIndex | int 或 array | 设置此组件控制的y轴，默认控制和dataZoom平行的第一个yAxis。例如：</p>
+				<p>&emsp;&emsp;yAxis: [{第一个y轴}, {第二个y轴}, {第三个y轴}], dataZoom: [{yAxisIndex[0, 2]}, {yAxisIndex: 1}]</p>
+				<p>&emsp;&emsp;这表示有三个y轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个y轴，第二个dataZoom组件控制第二个y轴</p>	
+				<p>&emsp;&emsp;dataZoom[index].filterMode | "filter" "empty" | </p>
+				<p>&emsp;&emsp;"filter":当前数据窗口外的数据被过滤掉，即会影响其他轴的数据范围；"empty":当前数据窗口外的数据被设置为空，即不会影响其他轴的数据范围</p>	
+				<p>&emsp;&emsp;dataZoom[index].start | int | 数据窗口范围的起始百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>
+				<p>&emsp;&emsp;dataZoom[index].end | int | 数据窗口范围的结束百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>	
+				<p>&emsp;&emsp;dataZoom[index].startValue | int 或 String 或 Date | 数据窗口范围的起始值，如果设置了.start则.startValue失效</p>
+				<p>&emsp;&emsp;对于category轴，startValue既可以设置为axis.data数组的index，也可以设置为数组值本身</p>
+				<p>&emsp;&emsp;dataZoom[index].endValue | int 或 String 或 Date | 数据窗口范围的结束值，如果设置了.end 则.endValue失效</p>
+				<p>&emsp;&emsp;对于category轴，endValue既可以设置为axis.data数组的index，也可以设置为数组值本身</p>	
+				<p>&emsp;&emsp;dataZoom[index].orient | "horizontal" "vertical" null | 控制横向数轴还是纵向数轴，默认为null</p>	
+				<p>&emsp;&emsp;dataZoom[index].zoomLock | boolean | 设置为true就是只能移动，不能缩放</p>	
+				<p>&emsp;&emsp;dataZoom[index].throttle | int | 设置视图刷新的频率，单位为毫秒，默认100</p>	
+				<p>&emsp;&emsp;dataZoom[index].zlevel | int | zlevel值，优先级高于z值，每个zlevel值对应一个Canvas层</p>
+				<p>&emsp;&emsp;dataZoom[index].z | int | z值，优先级低于zlevel值，在同一个Canvas层中再分层</p>	
+				<p>&emsp;&emsp;dataZoom[index].left | int 或 "left" "center" "right" | 组件距离容器左侧的距离</p>
+				<p>&emsp;&emsp;dataZoom[index].right | int 或 "int%" | 组件距离容器右侧的距离</p>
+				<p>&emsp;&emsp;dataZoom[index].top | int 或 "int%" 或 "top" "middle" "bottom" | 组件距离容器顶端的距离</p>
+				<p>&emsp;&emsp;dataZoom[index].bottom | int 或 "int%" | 组件距离容器底端的距离</p>				
+				
 			<!-- 折线图主体 -->
 		</div>
 		<script src="../lib/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
