@@ -9,7 +9,7 @@
 		<link href="../css/generalStyle.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
+		<nav class="navbar navbar-inverse">
 			<div class="container">
 				<div class="center"><span id="navbarText">折线图(Line Graph)</span><div>
 			</div>
@@ -28,6 +28,7 @@
 					<div class="entry"><span class="margin-right bold">区域间隔色-基于y轴 (json.yAxis.splitArea)</span><div class="goRight"><input id="toggle-splitArea-y" type="checkbox" data-group-cls="btn-group-xs" /><a href="#details_splitArea" class="btn btn-info btn-xs margin-left">详细配置</a></div></div>
 					<div class="entry"><span class="margin-right bold">数据缩放工具 (json.dataZoom)</span><div class="goRight"><input id="toggle-dataZoom" type="checkbox" data-group-cls="btn-group-xs" checked /><a href="#details_dataZoom" class="btn btn-info btn-xs margin-left">详细配置</a></div></div>
 					<div class="entry"><span class="margin-right bold">折线图主体 (json.series[index].type: "line")</span><div class="goRight"><input id="toggle-series" type="checkbox" data-group-cls="btn-group-xs" checked disabled /><a href="#details_series" class="btn btn-info btn-xs margin-left">详细配置</a></div></div>
+					<div class="entry"><span class="margin-right bold">折线图/折线面积图(json.series[index].areaStyle)</span><div class="goRight"><input id="toggle-area" type="checkbox" data-group-cls="btn-group-xs" checked /><a href="#details_area" class="btn btn-info btn-xs margin-left">详细配置</a></div></div>
 				</div>
 				<div class="col-md-6">
 					<div id="showcase"></div>
@@ -66,8 +67,9 @@
 					<p>&emsp;&emsp;textStyle.color | string | 主题文本颜色</p>
 					<p>&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 主题文本风格</p>
 					<p>&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 主题文本粗细</p>	
-				<p>title.subtext | string | 副标题文本，支持\n换行</p>
-				<p>title.padding | [int, int, int, int] | 标题内边距</p>
+				<p>title.subtext | string | 副标题文本，支持\n换行，同样副标题也可以通过设置textStyle修改文本样式</p>
+				<p>title.itemGap | int | 主副标题的间距</p>
+				<p>title.padding | [int, int, int, int] | 标题内边距，上右下左，单位px</p>
 				<p>title.left | int 或 "int%" 或 "left" "center" "right"| 标题距离容器左侧的距离</p>
 				<p>title.right | int 或 "int%" | 标题距离容器右侧的距离</p>
 				<p>title.top | int 或 "int%" 或 "top" "middle" "bottom" | 标题距离容器顶端的距离</p>
@@ -198,75 +200,136 @@
 			<!-- 数据区域缩放工具 -->
 			<div class="row" id="details_dataZoom">
 				<h3 class="greenBlue bold">json.dataZoom | array | 数据区域缩放工具相关配置, array中每个元素代表一种区域缩放工具</h3>
-			</div>		
-			<p>dataZoom[index].type | "inside" "slider" 另外一种在toolbox.feature.dataZoom中配置 | 数据区域缩放工具类型</p>	
-			<p><b>"inside"是内置型数据区域缩放工具，它的常用配置项有：</b></p>
-				<p>&emsp;&emsp;dataZoom[index].disabled | boolean | 是否禁用此功能</p>
-				<p>&emsp;&emsp;dataZoom[index].xAxisIndex | int 或 array | 设置此组件控制的x轴，默认控制和dataZoom平行的第一个xAxis。例如：</p>
-				<p>&emsp;&emsp;xAxis: [{第一个x轴}, {第二个x轴}, {第三个x轴}], dataZoom: [{xAxisIndex[0, 2]}, {xAxisIndex: 1}]</p>
-				<p>&emsp;&emsp;这表示有三个x轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个x轴，第二个dataZoom组件控制第二个x轴</p>
-				<p>&emsp;&emsp;dataZoom[index].disabled | boolean | 是否禁用此功能</p>
-				<p>&emsp;&emsp;dataZoom[index].yAxisIndex | int 或 array | 设置此组件控制的y轴，默认控制和dataZoom平行的第一个yAxis。例如：</p>
-				<p>&emsp;&emsp;yAxis: [{第一个y轴}, {第二个y轴}, {第三个y轴}], dataZoom: [{yAxisIndex[0, 2]}, {yAxisIndex: 1}]</p>
-				<p>&emsp;&emsp;这表示有三个y轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个y轴，第二个dataZoom组件控制第二个y轴</p>				
-				<p>&emsp;&emsp;dataZoom[index].filterMode | "filter" "empty" | </p>
-				<p>&emsp;&emsp;"filter":当前数据窗口外的数据被过滤掉，即会影响其他轴的数据范围；"empty":当前数据窗口外的数据被设置为空，即不会影响其他轴的数据范围</p>
-				<p>&emsp;&emsp;dataZoom[index].start | int | 数据窗口范围的起始百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>
-				<p>&emsp;&emsp;dataZoom[index].end | int | 数据窗口范围的结束百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>	
-				<p>&emsp;&emsp;dataZoom[index].startValue | int 或 String 或 Date | 数据窗口范围的起始值，如果设置了.start则.startValue失效</p>
-				<p>&emsp;&emsp;对于category轴，startValue既可以设置为axis.data数组的index，也可以设置为数组值本身</p>
-				<p>&emsp;&emsp;dataZoom[index].endValue | int 或 String 或 Date | 数据窗口范围的结束值，如果设置了.end 则.endValue失效</p>
-				<p>&emsp;&emsp;对于category轴，endValue既可以设置为axis.data数组的index，也可以设置为数组值本身</p>	
-				<p>&emsp;&emsp;dataZoom[index].orient | "horizontal" "vertical" null | 控制横向数轴还是纵向数轴，默认为null</p>	
-				<p>&emsp;&emsp;dataZoom[index].zoomLock | boolean | 设置为true就是只能移动，不能缩放</p>	
-				<p>&emsp;&emsp;dataZoom[index].throttle | int | 设置视图刷新的频率，单位为毫秒，默认100</p>
-			<p><b>"slider"是滑块型数据区域缩放工具，它的常用配置项有：</b></p>	
-				<p>&emsp;&emsp;dataZoom[index].show | boolean | 是否显示此组件</p>
-				<p>&emsp;&emsp;dataZoom[index].backgroundColor | string | 组件的背景颜色</p>
-				<p>&emsp;&emsp;dataZoom[index].fillerColor | string | 选中范围的填充颜色</p>
-				<p>&emsp;&emsp;dataZoom[index].borderColor | string | 边框颜色</p>
-				<p>&emsp;&emsp;dataZoom[index].handleSize | int | 自定义手柄的尺寸</p>
-				<p>&emsp;&emsp;dataZoom[index].labelPrecision | int | 显示label的小数精度，默认根据数据自动决定</p>
-				<p>&emsp;&emsp;dataZoom[index].showDetail | boolean | 是否在拖拽时候显示详细数值信息</p>
-				<p>&emsp;&emsp;dataZoom[index].realtime | boolean | 是否实时更新视图。如果设置为 false，则只在拖拽结束的时候更新</p>
-				<p>&emsp;&emsp;dataZoom[index].textStyle | object | 组件中文字的样式</p>
-					<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontFamily | string | 组件中的文本字体</p>
-					<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontSize | int | 组件中的文本大小</p>
-					<p>&emsp;&emsp;&emsp;&emsp;textStyle.color | string | 组件中的文本颜色</p>
-					<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 组件中的文本风格</p>
-					<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 组件中的文本粗细</p>
-				<p>&emsp;&emsp;dataZoom[index].xAxisIndex | int 或 array | 设置此组件控制的x轴，默认控制和dataZoom平行的第一个xAxis。例如：</p>
-				<p>&emsp;&emsp;xAxis: [{第一个x轴}, {第二个x轴}, {第三个x轴}], dataZoom: [{xAxisIndex[0, 2]}, {xAxisIndex: 1}]</p>
-				<p>&emsp;&emsp;这表示有三个x轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个x轴，第二个dataZoom组件控制第二个x轴</p>
-				<p>&emsp;&emsp;dataZoom[index].disabled | boolean | 是否禁用此功能</p>
-				<p>&emsp;&emsp;dataZoom[index].yAxisIndex | int 或 array | 设置此组件控制的y轴，默认控制和dataZoom平行的第一个yAxis。例如：</p>
-				<p>&emsp;&emsp;yAxis: [{第一个y轴}, {第二个y轴}, {第三个y轴}], dataZoom: [{yAxisIndex[0, 2]}, {yAxisIndex: 1}]</p>
-				<p>&emsp;&emsp;这表示有三个y轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个y轴，第二个dataZoom组件控制第二个y轴</p>	
-				<p>&emsp;&emsp;dataZoom[index].filterMode | "filter" "empty" | </p>
-				<p>&emsp;&emsp;"filter":当前数据窗口外的数据被过滤掉，即会影响其他轴的数据范围；"empty":当前数据窗口外的数据被设置为空，即不会影响其他轴的数据范围</p>	
-				<p>&emsp;&emsp;dataZoom[index].start | int | 数据窗口范围的起始百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>
-				<p>&emsp;&emsp;dataZoom[index].end | int | 数据窗口范围的结束百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>	
-				<p>&emsp;&emsp;dataZoom[index].startValue | int 或 String 或 Date | 数据窗口范围的起始值，如果设置了.start则.startValue失效</p>
-				<p>&emsp;&emsp;对于category轴，startValue既可以设置为axis.data数组的index，也可以设置为数组值本身</p>
-				<p>&emsp;&emsp;dataZoom[index].endValue | int 或 String 或 Date | 数据窗口范围的结束值，如果设置了.end 则.endValue失效</p>
-				<p>&emsp;&emsp;对于category轴，endValue既可以设置为axis.data数组的index，也可以设置为数组值本身</p>	
-				<p>&emsp;&emsp;dataZoom[index].orient | "horizontal" "vertical" null | 控制横向数轴还是纵向数轴，默认为null</p>	
-				<p>&emsp;&emsp;dataZoom[index].zoomLock | boolean | 设置为true就是只能移动，不能缩放</p>	
-				<p>&emsp;&emsp;dataZoom[index].throttle | int | 设置视图刷新的频率，单位为毫秒，默认100</p>	
-				<p>&emsp;&emsp;dataZoom[index].zlevel | int | zlevel值，优先级高于z值，每个zlevel值对应一个Canvas层</p>
-				<p>&emsp;&emsp;dataZoom[index].z | int | z值，优先级低于zlevel值，在同一个Canvas层中再分层</p>	
-				<p>&emsp;&emsp;dataZoom[index].left | int 或 "left" "center" "right" | 组件距离容器左侧的距离</p>
-				<p>&emsp;&emsp;dataZoom[index].right | int 或 "int%" | 组件距离容器右侧的距离</p>
-				<p>&emsp;&emsp;dataZoom[index].top | int 或 "int%" 或 "top" "middle" "bottom" | 组件距离容器顶端的距离</p>
-				<p>&emsp;&emsp;dataZoom[index].bottom | int 或 "int%" | 组件距离容器底端的距离</p>				
-				
+			</div>
+			<div class="row">
+				<p>dataZoom[index].type | "inside" "slider" 另外一种在toolbox.feature.dataZoom中配置 | 数据区域缩放工具类型</p>	
+				<p><b>"inside"是内置型数据区域缩放工具，它的常用配置项有：</b></p>
+					<p>&emsp;&emsp;dataZoom[index].disabled | boolean | 是否禁用此功能</p>
+					<p>&emsp;&emsp;dataZoom[index].xAxisIndex | int 或 array | 设置此组件控制的x轴，默认控制和dataZoom平行的第一个xAxis。例如：</p>
+					<p>&emsp;&emsp;xAxis: [{第一个x轴}, {第二个x轴}, {第三个x轴}], dataZoom: [{xAxisIndex[0, 2]}, {xAxisIndex: 1}]</p>
+					<p>&emsp;&emsp;这表示有三个x轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个x轴，第二个dataZoom组件控制第二个x轴</p>
+					<p>&emsp;&emsp;dataZoom[index].disabled | boolean | 是否禁用此功能</p>
+					<p>&emsp;&emsp;dataZoom[index].yAxisIndex | int 或 array | 设置此组件控制的y轴，默认控制和dataZoom平行的第一个yAxis。例如：</p>
+					<p>&emsp;&emsp;yAxis: [{第一个y轴}, {第二个y轴}, {第三个y轴}], dataZoom: [{yAxisIndex[0, 2]}, {yAxisIndex: 1}]</p>
+					<p>&emsp;&emsp;这表示有三个y轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个y轴，第二个dataZoom组件控制第二个y轴</p>				
+					<p>&emsp;&emsp;dataZoom[index].filterMode | "filter" "empty" | </p>
+					<p>&emsp;&emsp;"filter":当前数据窗口外的数据被过滤掉，即会影响其他轴的数据范围；"empty":当前数据窗口外的数据被设置为空，即不会影响其他轴的数据范围</p>
+					<p>&emsp;&emsp;dataZoom[index].start | int | 数据窗口范围的起始百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>
+					<p>&emsp;&emsp;dataZoom[index].end | int | 数据窗口范围的结束百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>	
+					<p>&emsp;&emsp;dataZoom[index].startValue | int 或 String 或 Date | 数据窗口范围的起始值，如果设置了.start则.startValue失效</p>
+					<p>&emsp;&emsp;对于category轴，startValue既可以设置为axis.data数组的index，也可以设置为数组值本身</p>
+					<p>&emsp;&emsp;dataZoom[index].endValue | int 或 String 或 Date | 数据窗口范围的结束值，如果设置了.end 则.endValue失效</p>
+					<p>&emsp;&emsp;对于category轴，endValue既可以设置为axis.data数组的index，也可以设置为数组值本身</p>	
+					<p>&emsp;&emsp;dataZoom[index].orient | "horizontal" "vertical" null | 控制横向数轴还是纵向数轴，默认为null</p>	
+					<p>&emsp;&emsp;dataZoom[index].zoomLock | boolean | 设置为true就是只能移动，不能缩放</p>	
+					<p>&emsp;&emsp;dataZoom[index].throttle | int | 设置视图刷新的频率，单位为毫秒，默认100</p>
+				<p><b>"slider"是滑块型数据区域缩放工具，它的常用配置项有：</b></p>	
+					<p>&emsp;&emsp;dataZoom[index].show | boolean | 是否显示此组件</p>
+					<p>&emsp;&emsp;dataZoom[index].backgroundColor | string | 组件的背景颜色</p>
+					<p>&emsp;&emsp;dataZoom[index].fillerColor | string | 选中范围的填充颜色</p>
+					<p>&emsp;&emsp;dataZoom[index].borderColor | string | 边框颜色</p>
+					<p>&emsp;&emsp;dataZoom[index].handleSize | int | 自定义手柄的尺寸</p>
+					<p>&emsp;&emsp;dataZoom[index].labelPrecision | int | 显示label的小数精度，默认根据数据自动决定</p>
+					<p>&emsp;&emsp;dataZoom[index].showDetail | boolean | 是否在拖拽时候显示详细数值信息</p>
+					<p>&emsp;&emsp;dataZoom[index].realtime | boolean | 是否实时更新视图。如果设置为 false，则只在拖拽结束的时候更新</p>
+					<p>&emsp;&emsp;dataZoom[index].textStyle | object | 组件中文字的样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontFamily | string | 组件中的文本字体</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontSize | int | 组件中的文本大小</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.color | string | 组件中的文本颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 组件中的文本风格</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 组件中的文本粗细</p>
+					<p>&emsp;&emsp;dataZoom[index].xAxisIndex | int 或 array | 设置此组件控制的x轴，默认控制和dataZoom平行的第一个xAxis。例如：</p>
+					<p>&emsp;&emsp;xAxis: [{第一个x轴}, {第二个x轴}, {第三个x轴}], dataZoom: [{xAxisIndex[0, 2]}, {xAxisIndex: 1}]</p>
+					<p>&emsp;&emsp;这表示有三个x轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个x轴，第二个dataZoom组件控制第二个x轴</p>
+					<p>&emsp;&emsp;dataZoom[index].disabled | boolean | 是否禁用此功能</p>
+					<p>&emsp;&emsp;dataZoom[index].yAxisIndex | int 或 array | 设置此组件控制的y轴，默认控制和dataZoom平行的第一个yAxis。例如：</p>
+					<p>&emsp;&emsp;yAxis: [{第一个y轴}, {第二个y轴}, {第三个y轴}], dataZoom: [{yAxisIndex[0, 2]}, {yAxisIndex: 1}]</p>
+					<p>&emsp;&emsp;这表示有三个y轴，两个dataZoom组件。第一个dataZoom组件控制第一个和第三个y轴，第二个dataZoom组件控制第二个y轴</p>	
+					<p>&emsp;&emsp;dataZoom[index].filterMode | "filter" "empty" | </p>
+					<p>&emsp;&emsp;"filter":当前数据窗口外的数据被过滤掉，即会影响其他轴的数据范围；"empty":当前数据窗口外的数据被设置为空，即不会影响其他轴的数据范围</p>	
+					<p>&emsp;&emsp;dataZoom[index].start | int | 数据窗口范围的起始百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>
+					<p>&emsp;&emsp;dataZoom[index].end | int | 数据窗口范围的结束百分比，范围是：0 ~ 100，表示 0% ~ 100%</p>	
+					<p>&emsp;&emsp;dataZoom[index].startValue | int 或 String 或 Date | 数据窗口范围的起始值，如果设置了.start则.startValue失效</p>
+					<p>&emsp;&emsp;对于category轴，startValue既可以设置为axis.data数组的index，也可以设置为数组值本身</p>
+					<p>&emsp;&emsp;dataZoom[index].endValue | int 或 String 或 Date | 数据窗口范围的结束值，如果设置了.end 则.endValue失效</p>
+					<p>&emsp;&emsp;对于category轴，endValue既可以设置为axis.data数组的index，也可以设置为数组值本身</p>	
+					<p>&emsp;&emsp;dataZoom[index].orient | "horizontal" "vertical" null | 控制横向数轴还是纵向数轴，默认为null</p>	
+					<p>&emsp;&emsp;dataZoom[index].zoomLock | boolean | 设置为true就是只能移动，不能缩放</p>	
+					<p>&emsp;&emsp;dataZoom[index].throttle | int | 设置视图刷新的频率，单位为毫秒，默认100</p>	
+					<p>&emsp;&emsp;dataZoom[index].zlevel | int | zlevel值，优先级高于z值，每个zlevel值对应一个Canvas层</p>
+					<p>&emsp;&emsp;dataZoom[index].z | int | z值，优先级低于zlevel值，在同一个Canvas层中再分层</p>	
+					<p>&emsp;&emsp;dataZoom[index].left | int 或 "left" "center" "right" | 组件距离容器左侧的距离</p>
+					<p>&emsp;&emsp;dataZoom[index].right | int 或 "int%" | 组件距离容器右侧的距离</p>
+					<p>&emsp;&emsp;dataZoom[index].top | int 或 "int%" 或 "top" "middle" "bottom" | 组件距离容器顶端的距离</p>
+					<p>&emsp;&emsp;dataZoom[index].bottom | int 或 "int%" | 组件距离容器底端的距离</p>	
+			</div>	
 			<!-- 折线图主体 -->
+			<div class="row" id="details_series">
+				<h3 class="greenBlue bold">json.series[index].type | "line" | 折线图主体</h3>
+			</div>
+			<div class="row">
+				<p>series[index].name | string | 折线图名称</p>
+				<p>series[index].xAxisIndex | int | 使用的x轴的index，在单个图表实例中存在多个x轴的时候有用</p>
+				<p>series[index].yAxisIndex | int | 使用的y轴的index，在单个图表实例中存在多个y轴的时候有用</p>
+				<p>series[index].symbol |</p>
+				<p>"null" "circle" "emptyCircle" "rect" "emptyRect" "roundRect" "emptyRoundRect" "triangle" "emptyTriangle" "diamond" "emptyDiamond" "emptyPin" "arrow" "emptyArrow"| 标记的图形</p>
+				<p>series[index].symbolSize | int 或 [int, int] | 标记的大小, 单一数字或者[宽, 高]</p>
+				<p>series[index].symbolRotate | int | 标记的旋转角度</p>
+				<p>series[index].showSymbol | boolean | 是否显示标记，如果设为false则只有在tooltip hover的时候显示</p>
+				<p>series[index].hoverAnimation | boolean | 是否开启hover在拐点标志上的提示动画效果, 默认true</p>
+				<p>series[index].legendHoverLink | boolean | 是否启用图例hover时的联动高亮，默认true</p>
+				<p>series[index].stack | string | 数据堆叠：在category轴中，相同类型的后一个系列的值会在前一个系列的值的基础上相加显示</p>
+				<p>series[index].connectNulls | boolean | 是否连接空数据</p>
+				<p>series[index].clipOverflow | boolean | 是否对超出部分裁剪，默认裁剪</p>
+				<p>series[index].step | boolean 或 "start" "middle" "end" | 是否是阶梯型图</p>
+				<p>series[index].label | normal 或 emphasis | 图形上的文本标签</p>
+				<p><b>可以设置为normal或emphasis, 但两者的配置项相同，下面以normal为例: </b></p>
+					<p>&emsp;&emsp;normal.show | boolean | 是否显示标签</p>
+					<p>&emsp;&emsp;normal.position | [int, int] 或 [int%, int%] | 通过绝对像素值或百分比表示标签相对于容器左上角的位置</p>
+					<p>&emsp;&emsp;normal.textStyle | object | 标签的字体样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontFamily | string | 标签的文本字体</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontSize | int | 标签的文本大小</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.color | string | 标签的文本颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 标签的文本风格</p>
+						<p>&emsp;&emsp;&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 标签的文本粗细</p>
+				<p>series[index].itemStyle | normal 或 emphasis | 折线拐点标志的样式</p>
+				<p><b>可以设置为normal或emphasis, 但两者的配置项相同，下面以normal为例: </b></p>
+					<p>&emsp;&emsp;normal.color | string | 图形的颜色</p>
+					<p>&emsp;&emsp;normal.borderColor | string | 图形的描边颜色</p>
+					<p>&emsp;&emsp;normal.borderWidth | string | 图形的描边线宽</p>
+					<p>&emsp;&emsp;normal.borderType | "solid" "dashed" "dotted" | 图形的描边类型</p>
+					<p>&emsp;&emsp;normal.opacity | int | 图形透明度，支持从0到1的数字，为0时不绘制该图形</p>
+				<p>series[index].lineStyle | normal | 线条的样式</p>	
+				<p><b>只能是normal:</b></p>
+					<p>&emsp;&emsp;normal.color | string | 线条的颜色</p>
+					<p>&emsp;&emsp;normal.width | string | 线条的宽度</p>
+					<p>&emsp;&emsp;normal.type | "solid" "dashed" "dotted" | 线条的类型</p>
+					<p>&emsp;&emsp;normal.opacity | int | 线条的透明度，支持从0到1的数字，为0时不绘制该图形</p>
+				<p id="details_area">series[index].areaStyle | normal | 区域填充样式</p>	
+				<p><b>只能是normal:</b></p>
+					<p>&emsp;&emsp;normal.color | string | 填充的颜色，可以是单一颜色，也可以:</p>
+					<p>&emsp;&emsp;// 线性渐变，前四个参数分别是 x0, y0, x2, y2, 范围从 0 - 1，相当于在图形包围盒中的百分比，如果最后一个参数传 `true`，则该四个值是绝对的像素位置<br/>
+					&emsp;&emsp;color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{<br/>
+					&emsp;&emsp;&emsp;&emsp;offset: 0, color: 'red' // 0% 处的颜色<br/>
+					&emsp;&emsp;}, {<br/>
+					&emsp;&emsp;&emsp;&emsp;offset: 1, color: 'blue' // 100% 处的颜色<br/>
+					&emsp;&emsp;}], false)<br/>
+					&emsp;&emsp;// 径向渐变，前三个参数分别是圆心 x, y 和半径，取值同线性渐变<br/>
+					&emsp;&emsp;color: new echarts.graphic.RadialGradient(0.5, 0.5, 0.5, [...], false)<br/>
+					&emsp;&emsp;// 纹理填充<br/>
+					&emsp;&emsp;color: new echarts.graphic.Pattern(<br/>
+					&emsp;&emsp;&emsp;&emsp;imageDom, // 支持为 HTMLImageElement, HTMLCanvasElement，不支持路径字符串<br/>
+					&emsp;&emsp;&emsp;&emsp;'repeat' // 是否平铺, 可以是 repeat-x, repeat-y, no-repeat<br/>
+					&emsp;&emsp;)</p>
+					<p>&emsp;&emsp;normal.opacity | int | 填充颜色的透明度，支持从0到1的数字，为0时不绘制该图形</p>
+				<p>series[index].smooth | boolean | 是否平滑折线</p>	
+			</div>	
 		</div>
 		<script src="../lib/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/checkbox.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/echarts.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/linegraphScript.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/generalScript.js" type="text/javascript"></script>
+		<script src="../js/linegraphScript.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>	

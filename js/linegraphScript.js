@@ -22,7 +22,8 @@ var options = {
 		show: true,
         left: "center",
         text: "Simulated Data",
-		textStyle: {color: "white"}
+		textStyle: {color: "white"},
+		top: 18
     },	
 	backgroundColor: "#1F1D1D",
     toolbox: {
@@ -63,11 +64,7 @@ var options = {
         end: 10,
         handleSize: '80%',
         handleStyle: {
-            color: 'white',
-            shadowBlur: 3,
-            shadowColor: 'rgba(0, 0, 0, 0.6)',
-            shadowOffsetX: 2,
-            shadowOffsetY: 2
+            color: 'white'
         },
 		textStyle: {color: "white"}
     }],
@@ -76,21 +73,24 @@ var options = {
             name: "Data",
             type: 'line',
             smooth: true,
-            symbol: 'none',
+            symbol: 'emptyCircle',
+			symbolSize: 1,
             sampling: 'average',
+			smooth: true,
             itemStyle: {
                 normal: {
-                    color: 'rgb(255, 70, 131)'
+                    color: '#B342F4'
                 }
             },
             areaStyle: {
                 normal: {
+					opacity: null,
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                         offset: 0,
-                        color: 'rgb(255, 158, 68)'
+                        color: '#B342F4'
                     }, {
                         offset: 1,
-                        color: 'rgb(255, 70, 131)'
+                        color: '#D389FF'
                     }])
                 }
             },
@@ -100,3 +100,69 @@ var options = {
 };
 
 myChart.setOption(options);
+
+// 网格线-横向
+$("#toggle-splitLine-x").checkboxpicker();
+$("#toggle-splitLine-x").on("change", function() {
+	if (options.xAxis.splitLine.show == true) {
+		options.xAxis.splitLine.show = false;
+	} else {
+		options.xAxis.splitLine.show = true;
+	}
+	myChart.setOption(options);
+});
+
+// 网格线-纵向
+$("#toggle-splitLine-y").checkboxpicker();
+$("#toggle-splitLine-y").on("change", function() {
+	if (options.yAxis.splitLine.show == true) {
+		options.yAxis.splitLine.show = false;
+	} else {
+		options.yAxis.splitLine.show = true;
+	}
+	myChart.setOption(options);
+});
+
+// 区域间隔色-基于x轴
+$("#toggle-splitArea-x").checkboxpicker();
+$("#toggle-splitArea-x").on("change", function() {
+	if (options.xAxis.splitArea.show == true) {
+		options.xAxis.splitArea.show = false;
+	} else {
+		options.xAxis.splitArea.show = true;
+	}
+	myChart.setOption(options);
+});
+
+// 区域间隔色-基于y轴
+$("#toggle-splitArea-y").checkboxpicker();
+$("#toggle-splitArea-y").on("change", function() {
+	if (options.yAxis.splitArea.show == true) {
+		options.yAxis.splitArea.show = false;
+	} else {
+		options.yAxis.splitArea.show = true;
+	}
+	myChart.setOption(options);
+});
+
+// 数据区域缩放工具
+$("#toggle-dataZoom").checkboxpicker();
+$("#toggle-dataZoom").on("change", function() {
+	if (options.dataZoom[1].show == true) {
+		options.dataZoom[1].show = false;
+	} else {
+		options.dataZoom[1].show = true;
+	}
+	myChart.setOption(options);
+});
+
+// 坐标轴
+$("#toggle-area").checkboxpicker();
+$("#toggle-area").on("change", function() {
+	if (options.series[0].areaStyle.normal.opacity == 0) {
+		options.series[0].areaStyle.normal.opacity = null;
+	} else {
+		options.series[0].areaStyle.normal.opacity = 0;
+	}
+	myChart.setOption(options);
+});

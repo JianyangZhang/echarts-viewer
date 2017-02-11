@@ -75,62 +75,8 @@ $("#toggle-axis").checkboxpicker();
 $("#toggle-axis").on("change", function() {
 });
 
-// 网格线-横向
-$("#toggle-splitLine-x").checkboxpicker();
-$("#toggle-splitLine-x").on("change", function() {
-	if (options.xAxis.splitLine.show == true) {
-		options.xAxis.splitLine.show = false;
-	} else {
-		options.xAxis.splitLine.show = true;
-	}
-	myChart.setOption(options);
-});
-
-// 网格线-纵向
-$("#toggle-splitLine-y").checkboxpicker();
-$("#toggle-splitLine-y").on("change", function() {
-	if (options.yAxis.splitLine.show == true) {
-		options.yAxis.splitLine.show = false;
-	} else {
-		options.yAxis.splitLine.show = true;
-	}
-	myChart.setOption(options);
-});
-
-// 区域间隔色-基于x轴
-$("#toggle-splitArea-x").checkboxpicker();
-$("#toggle-splitArea-x").on("change", function() {
-	if (options.xAxis.splitArea.show == true) {
-		options.xAxis.splitArea.show = false;
-	} else {
-		options.xAxis.splitArea.show = true;
-	}
-	myChart.setOption(options);
-});
-
-// 区域间隔色-基于y轴
-$("#toggle-splitArea-y").checkboxpicker();
-$("#toggle-splitArea-y").on("change", function() {
-	if (options.yAxis.splitArea.show == true) {
-		options.yAxis.splitArea.show = false;
-	} else {
-		options.yAxis.splitArea.show = true;
-	}
-	myChart.setOption(options);
-});
-
-// 数据区域缩放工具
-$("#toggle-dataZoom").checkboxpicker();
-$("#toggle-dataZoom").on("change", function() {
-	if (options.dataZoom[1].show == true) {
-		options.dataZoom[1].show = false;
-	} else {
-		options.dataZoom[1].show = true;
-	}
-	myChart.setOption(options);
-});
-
 // 系列主体
 $("#toggle-series").checkboxpicker();
 $("#toggle-series").on("change", function() {
 });
+
