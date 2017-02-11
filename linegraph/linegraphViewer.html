@@ -323,6 +323,73 @@
 					&emsp;&emsp;)</p>
 					<p>&emsp;&emsp;normal.opacity | int | 填充颜色的透明度，支持从0到1的数字，为0时不绘制该图形</p>
 				<p>series[index].smooth | boolean | 是否平滑折线</p>	
+				<p>series[index].smoothMonotone | "x" "y" | 折线平滑后是否在一个维度上保持单调性</p>
+				<p>series[index].sampling | "average" "max" "min" "sum" | 折线图在数据量远大于像素点时候的降采样策略</p>	
+				<p>series[index].markPoint | object | 图表的标注相关配置</p>
+					<p>&emsp;&emsp;markPoint.symbol | "circle" "rect" "roundRect" "triangle" "diamond" "pin" "arrow" | 标注的图形</p>
+					<p>&emsp;&emsp;markPoint.symbolSize | int | 标注的大小</p>
+					<p>&emsp;&emsp;markPoint.symbolRotate | int | 标注的旋转角度</p>
+					<p>&emsp;&emsp;markPoint.symbolOffset | [int, int] 或 [int%, int%] | 标注相对于原本位置的偏移: [0, '50%'] 就是把自己向上移动了一半的位置</p>
+					<p>&emsp;&emsp;markPoint.silent | boolean | 默认为false时，标注响应和触发鼠标事件</p>
+					<p>&emsp;&emsp;markPoint.animation | boolean | 是否开启动画效果</p>
+					<p>&emsp;&emsp;markPoint.label | normal emphasis | 标注的文本样式</p>
+					<p><b>&emsp;&emsp;可以设置为normal或emphasis, 但两者的配置项相同，下面以normal为例: </b></p>
+						<p>&emsp;&emsp;&emsp;&emsp;label.normal.show | boolean | 是否显示标注文本</p>
+						<p>&emsp;&emsp;&emsp;&emsp;label.normal.position | [int, int] 或 [int%, int%] | 标注文本的位置 [横向, 纵向]</p>
+						<p>&emsp;&emsp;&emsp;&emsp;其他可选值(string): top left right bottom inside insideLeft insideRight insideTop insideBottom insideTopLeft insideBottomLeft insideTopRight insideBottomRight</p>
+						<p>&emsp;&emsp;&emsp;&emsp;label.normal.offset | [int, int] 或 [int%, int%] | 是否对文字进行偏移 [横向, 纵向]</p>
+						<p>&emsp;&emsp;&emsp;&emsp;label.normal.textStyle | object | 标注的字体样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;textStyle.fontFamily | string | 标注的文本字体</p>
+						<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;textStyle.fontSize | int | 标注的文本大小</p>
+						<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;textStyle.color | string | 标注的文本颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 标注的文本风格</p>
+						<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 标注的文本粗细</p>
+					<p>&emsp;&emsp;markPoint.itemStyle | normal emphasis | 标注的样式</p>
+					<p><b>&emsp;&emsp;可以设置为normal或emphasis, 但两者的配置项相同，下面以normal为例: </b></p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.color | string | 标注的颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.borderColor | string | 标注的描边颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.borderWidth | string | 标注的描边线宽</p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.borderType | "solid" "dashed" "dotted" | 标注的描边类型</p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.opacity | int | 标注透明度，支持从0到1的数字，为0时不绘制该图形</p>				
+				<p>series[index].markLine | object | 图表的标线相关配置</p>
+					<p>&emsp;&emsp;markLine.symbol | "circle" "rect" "roundRect" "triangle" "diamond" "pin" "arrow" | 标线两端的标记类型</p>
+					<p>&emsp;&emsp;markLine.symbolSize | int | 标线两端的标记的大小</p>
+					<p>&emsp;&emsp;markLine.precision | int | 标线数值的精度</p>					
+					<p>&emsp;&emsp;markLine.silent | boolean | 默认为false时，标线响应和触发鼠标事件</p>
+					<p>&emsp;&emsp;markLine.animation | boolean | 是否开启动画效果</p>	
+					<p>&emsp;&emsp;markLine.label | normal emphasis | 标线的文本样式</p>
+					<p><b>&emsp;&emsp;可以设置为normal或emphasis, 但两者的配置项相同，下面以normal为例: </b></p>
+						<p>&emsp;&emsp;&emsp;&emsp;label.normal.show | boolean | 是否显示标线文本</p>
+						<p>&emsp;&emsp;&emsp;&emsp;label.normal.position | "start" "middle" "end" |  标签位置，线的起始点、中点、结束点</p>
+					<p>&emsp;&emsp;markLine.itemStyle | normal emphasis | 标注的样式</p>
+					<p><b>&emsp;&emsp;可以设置为normal或emphasis, 但两者的配置项相同，下面以normal为例: </b></p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.color | string | 线的颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.width | string | 线宽</p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.type | "solid" "dashed" "dotted" |线的类型</p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.opacity | int | 线的透明度，支持从0到1的数字，为0时不绘制该图形</p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.curveness | int | 边的曲度，支持从0到1的值，值越大曲度越大</p>
+				<p>series[index].markArea | object | 图表的标域相关配置</p>				
+					<p>&emsp;&emsp;markArea.silent | boolean | 默认为false时，标域响应和触发鼠标事件</p>
+					<p>&emsp;&emsp;markArea.animation | boolean | 是否开启动画效果</p>	
+					<p>&emsp;&emsp;markArea.label | normal emphasis | 标域的文本样式</p>
+					<p><b>&emsp;&emsp;可以设置为normal或emphasis, 但两者的配置项相同，下面以normal为例: </b></p>
+						<p>&emsp;&emsp;&emsp;&emsp;label.normal.show | boolean | 是否显示标域文本</p>
+						<p>&emsp;&emsp;&emsp;&emsp;label.normal.position | [int, int] 或 [int%, int%] | 标域文本的位置 [横向, 纵向]</p>
+						<p>&emsp;&emsp;&emsp;&emsp;其他可选值(string): top left right bottom inside insideLeft insideRight insideTop insideBottom insideTopLeft insideBottomLeft insideTopRight insideBottomRight</p>
+						<p>&emsp;&emsp;&emsp;&emsp;label.normal.offset | [int, int] 或 [int%, int%] | 是否对文字进行偏移 [横向, 纵向]</p>
+						<p>&emsp;&emsp;&emsp;&emsp;label.normal.textStyle | object | 标域的字体样式</p>
+						<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;textStyle.fontFamily | string | 标域的文本字体</p>
+						<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;textStyle.fontSize | int | 标域的文本大小</p>
+						<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;textStyle.color | string | 标域的文本颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;textStyle.fontStyle | "normal" "italic" "oblique" | 标域的文本风格</p>
+						<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;textStyle.fontWeight | "normal" "bold" "bolder" "lighter" 或 100 200 300 400... | 标域的文本粗细</p>
+					<p>&emsp;&emsp;markArea.itemStyle | normal emphasis | 标域的样式</p>
+					<p><b>&emsp;&emsp;可以设置为normal或emphasis, 但两者的配置项相同，下面以normal为例: </b></p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.color | string | 标域的颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.borderColor | string | 标域的描边颜色</p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.borderWidth | string | 标域的描边线宽</p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.borderType | "solid" "dashed" "dotted" | 标域的描边类型</p>
+						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.opacity | int | 标域透明度，支持从0到1的数字，为0时不绘制该图形</p>
 			</div>	
 		</div>
 		<script src="../lib/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
