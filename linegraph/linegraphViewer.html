@@ -390,6 +390,10 @@
 						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.borderWidth | string | 标域的描边线宽</p>
 						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.borderType | "solid" "dashed" "dotted" | 标域的描边类型</p>
 						<p>&emsp;&emsp;&emsp;&emsp;itemStyle.normal.opacity | int | 标域透明度，支持从0到1的数字，为0时不绘制该图形</p>
+				<p>series[index].zlevel | int | zlevel值，优先级高于z值，每个zlevel值对应一个Canvas层</p>
+				<p>series[index].z | int | z值，优先级低于zlevel值，在同一个Canvas层中再分层</p>
+				<p>series[index].silent | boolean | 默认为false时，图表区域响应和触发鼠标事件</p>
+				<p>series[index].animation | boolean | 是否开启动画效果</p>
 			</div>	
 		</div>
 		<script src="../lib/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
